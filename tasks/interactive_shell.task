@@ -1,0 +1,2 @@
+RC hf %T%.history EMPTY
+CMD HISTFILE=%hf% bash -i %PARAM%

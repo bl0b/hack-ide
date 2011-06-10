@@ -1,0 +1,2 @@
+RC pyhist %T%.pyhistory EMPTY
+CMD python -i %PARAM%
