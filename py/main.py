@@ -24,7 +24,7 @@ def respawn(hi, tmuxrc):
     print 'DEBUG', hi['layout']
     rc = '-f %s '%tmuxrc
     ret = []
-    session_exists = tmux('has-session -t '+hi['context'])[1]!=0
+    session_exists = tmux('has-session -t '+hi['context'])[1]==0
     if session_exists:
         print "[Reattaching to existing session %s]"%hi['context']
         ret = [ tmux('-f %s attach -t %s'%(tmuxrc, hi['context'])) ]

@@ -131,9 +131,9 @@ class splitter(object):
         else:
             l += [ (self.a.index, parent, parent_opts, self.a.task.tmux_shell_cmd()) ]
         if type(self.b) is splitter:
-            l += self.b.flat_pane_list(self.b.index, self.opts)
+            l += self.b.flat_pane_list(self.a.index, self.opts)
         else:
-            l += [ (self.b.index, self.index, self.opts, self.b.task.tmux_shell_cmd()) ]
+            l += [ (self.a.index, self.index, self.opts, self.b.task.tmux_shell_cmd()) ]
 
         return sorted(l, None, lambda x: x[0])
 

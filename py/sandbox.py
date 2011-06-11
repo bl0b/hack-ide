@@ -8,37 +8,6 @@ from layout import *
 from hackide import *
 
 
-#class vim_task(task):
-#    rc_contents = """source /etc/vim/vimrc
-#source ~/.vimrc
-#let g:session_autosave = 'no'
-#let g:session_directory = '%s'
-#map <F8> <Esc>:SaveSession %%T%%
-#map <F5> <Esc>:OpenSession %%T%%
-#"""%ide_data_path
-#    def __init__(self, contextname, taskname, param):
-#        task.__init__(self, contextname, taskname, param)
-#        self['VIMINFO'] = rc_file(taskname+'.viminfo').path
-#        self['VIMSESSION'] = rc_file(taskname+'.vim').path
-#        self['VIMRC'] = rc_file(taskname+'.vimrc', self.parse(vim_task.rc_contents)).path
-#        self.cmd_template = "vim -u %VIMRC% -i %VIMINFO% -S %VIMSESSION%"
-#        self.cmd_wd = "."
-#
-#class cmd_task(task):
-#    def __init__(self, contextname, taskname, param):
-#        task.__init__(self, contextname, taskname, param)
-#        words = param.split(' ')
-#        self.cmd_wd = words[0]
-#        self.cmd_template = ' '.join(words[1:])
-#
-#class interactive_shell_task(task):
-#    def __init__(self, contextname, taskname, param):
-#        task.__init__(self, contextname, taskname, param)
-#        self['HF'] = rc_file(taskname+'.bash_history').path
-#        self.cmd_template = "HISTFILE=%HF% bash -i"
-#        self.cmd_wd = param or '.'
-#
-
 
 
 if __name__=='__main__':
