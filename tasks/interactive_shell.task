@@ -1,2 +1,5 @@
 RC hf %T%.history EMPTY
 CMD HISTFILE=%hf% bash -i %PARAM%
+DOC
+Runs an interactive shell with specific and persistent command history.
+END DOC

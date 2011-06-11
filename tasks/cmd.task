@@ -1,1 +1,4 @@
 CMD %PARAM%
+DOC
+Runs its whole parameter string as a shell script.
+END DOC

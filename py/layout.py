@@ -101,8 +101,8 @@ class pane(object):
 #            'swap-pane -s %s:%s.0 -t %s:hack-ide.%i'%(p, t, p, self.index),
 #            'kill-window -t %s:%i'%(self.task['P'], self.task.task_index)
 #        ]
-    def set_index(self, index):
-        self.index = index
+    def set_index(self):
+        pass
     def first_pane(self):
         return self
 
@@ -120,18 +120,10 @@ class splitter(object):
     def set_index(self):
         self.a.index = self.index
         self.b.index = splitter.alloc_index()
-        if type(self.a) is splitter:
-            self.a.set_index()
-        if type(self.b) is splitter:
-            self.b.set_index()
-#    def tmux_cmds(self):
-#        ret=["split-window %s -t %s:hack-ide.%i"%(self.opts, get_context_name(), self.index)]
-#        ret+=self.a.tmux_cmds()
-#        ret+=self.b.tmux_cmds()
-#        return ret
+        self.a.set_index()
+        self.b.set_index()
     def first_pane(self):
         return self.a.first_pane()
-
     def flat_pane_list(self, parent=None, parent_opts = None):
         l = []
         if type(self.a) is splitter:
@@ -142,14 +134,16 @@ class splitter(object):
             l += self.b.flat_pane_list(self.b.index, self.opts)
         else:
             l += [ (self.b.index, self.index, self.opts, self.b.task.tmux_shell_cmd()) ]
-            return sorted(l, None, lambda x: x[0])
 
-        
+        return sorted(l, None, lambda x: x[0])
 
+
+layout = None
 
 def create_layout(l):
+    global layout
     tokens = []
-    splitter.top_index=-1
+    splitter.top_index=0
     try:
         while len(l)>0:
             t, v, l = layout_scanner(l)

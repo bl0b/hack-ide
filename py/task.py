@@ -36,6 +36,7 @@ class task(template):
         task_params = taskname.split(',')
         taskname = task_params[0]
         template.__init__(self)
+        self.doc = "This task template has no doc for it's the base class, and not meant to be used directly."
         for p in task_params[1:]:
             words = p.split(':')
             if words[0]=='rc':
@@ -75,6 +76,7 @@ def create_task_class(descfilename):
     output = lambda v: None
     rc_files = {}
     end_marker = None
+    doc = []
     for l in desc:
         if end_marker is not None:
             if l==end_marker:
@@ -96,12 +98,16 @@ def create_task_class(descfilename):
             end_marker = None
         elif l.startswith('CMD '):
             CMD = l[4:]
+        elif l=='DOC':
+            output = lambda v: doc.append(v)
+            end_marker = "END DOC"
     #print "task has cmd template", CMD
     #print "task has RC files", rc_files
 
     def init_wrapper(self, contextname, taskname, param):
-        x = param.split(' ')
-        wd, par = x[0] or '.', '\n'.join(x[1:])
+        param = param.strip()
+        x = param.find(' ')
+        wd, par = x==-1 and '.' or param[:x], param[x+1:]
         task.__init__(self, contextname, taskname, par)
         self.cmd_wd = wd
         self['PARAM'] = par
@@ -109,7 +115,9 @@ def create_task_class(descfilename):
             ft, cts = rc_files[k]
             fn = self.parse(ft)
             cts = self.parse('\n'.join(cts))
-            self[k] = rc_file(fn, cts and '\n'.join(cts) or '').path
+            self[k] = rc_file(fn, cts).path
+
         self.cmd_template = self.parse(CMD)
-    return type(clsname, (task,), { '__init__':init_wrapper })
+
+    return type(clsname, (task,), { '__init__':init_wrapper, 'doc':doc })
 

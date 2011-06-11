@@ -11,3 +11,7 @@ RC viminfo %T%.viminfo EMPTY
 RC vimsession %T%.vim EMPTY
 
 CMD vim -u %vimrc% -i %viminfo% -S %vimsession% %PARAM%
+DOC
+Runs vim with persistent history and session and a custom vimrc which acts as a wrapper for you own ~/.vimrc.
+If you wish to use supplementary flags, just pass them into the parameter string.
+END DOC

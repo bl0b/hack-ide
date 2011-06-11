@@ -27,4 +27,5 @@ def read_hackide(f):
         wlim = l.index(" ")
         w = l[:wlim]
         ret[w] = processors[w](l[wlim+1:])
+        print w, ret[w]
     return ret

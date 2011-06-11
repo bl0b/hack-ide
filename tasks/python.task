@@ -1,2 +1,7 @@
 RC pyhist %T%.pyhistory EMPTY
 CMD python -i %PARAM%
+DOC
+Runs an interactive Python shell.
+You can run a script before entering interactive mode by passing its commandline in the parameter string, e.g.:
+task toto => python ./py sandbox.py some_arg some_arg
+END DOC
