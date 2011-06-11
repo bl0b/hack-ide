@@ -5,18 +5,19 @@ import os, sys
 from task import *
 from hackide import *
 
-script_name = sys.argv[0]
-version = "0.1beta!"
+script_name = sys.argv[1]
+script_version = "0.1beta!"
 
 def version():
-    print script_name, "version", version, "© 2011 Damien 'bl0b' Leroux"
+    print script_name, "version", script_version, "© 2011 Damien 'bl0b' Leroux"
+    print
 
 def about():
+    version()
     print "invoke as follows:"
     print " %s ide-descr.hackide                to open this IDE"%script_name
     print " %s files ide-descr.hackide          to list the resource files used by this IDE"%script_name
     print " %s templates                        to list the available task templates"%script_name
-
 
 def respawn(hi, tmuxrc):
     print 'DEBUG', hi
@@ -54,6 +55,9 @@ def main(args):
     if len(args)==0 or "-h" in args or "--help" in args or "help" in args:
         about()
         return 0
+    if "-V" in args or "--version" in args or "version" in args:
+        version()
+        return 0
     if len(args)==1:
         if os.path.isfile(args[0]):
             respawn(read_hackide(args[0]), tmuxrc)
@@ -82,4 +86,4 @@ def main(args):
 
 
 if __name__=='__main__':
-    sys.exit(main(sys.argv[1:]))
+    sys.exit(main(sys.argv[2:]))
