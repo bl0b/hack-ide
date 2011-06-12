@@ -1,24 +1,5 @@
 Hack-IDE
 ============
-
-* * * * *
-
- 
-## Index
-
-[NAME](#lbAB)
-[SYNOPSYS](#lbAC)
-[DESCRIPTION](#lbAD)
-[FILES](#lbAE)
-[work-context description](#lbAF)
-[task template](#lbAG)
-[TODO](#lbAH)
-[BUGS](#lbAI)
-[AUTHOR](#lbAJ)
-
-* * * * *
-
-Content-type: text/html
 Man page of hackide
 # hackide
 
@@ -68,7 +49,7 @@ template directory.
 
 ### work-context description
 
-This file contains three different types of lines :
+This file contains four different types of lines :
 context &lt;context-name&gt;
 
 This line defines the context name, which will become the tmux
@@ -81,6 +62,15 @@ This line declares a task. **&lt;name&gt;** may be followed
 (without SPACES !) by a comma-delimited list of rc file definitions
 in the form   
  "rc:&lt;key&gt;:&lt;filename&gt;". This will create an empty resource file by the name filename and this file can be mentioned in the command parameters by writing "%key%".
+
+embed &lt;filename&gt; &lt;alias&gt; &lt;parameters...&gt;
+
+Embed another context inside this one. The contents of filename are
+expanded with a dictionary containing the alias name in *prefix*
+and positional arguments from **parameters** in *1, 2, 3...* (this
+is unbounded, if you provide 999 words on the parameter line, %999%
+will be defined) and the result is read like a .hackide file. You
+can then use the alias directly in the layout definition.
 
 layout &lt;layout-definition&gt;
 
@@ -117,6 +107,8 @@ RC &lt;key&gt; &lt;template\_filename&gt; (EMPTY|CONTENT)
 Declares a resource file. When a task is created using this
 template, the *template\_filename* is expanded using the dictionary
 of the task, that is :
+
+    
     {
             'T':task_name,
             'P':context_name,
@@ -127,6 +119,7 @@ of the task, that is :
 If the last word is CONTENT, the file will be initialized from the
 template expansion of all the following lines until the line "END
 &lt;key&gt; CONTENT", where &lt;key&gt; is still the same.
+
 CMD ...
 
 Sets the command template. Whatever is on the right of the space
@@ -178,4 +171,3 @@ Damien "bl0b" Leroux (damien.leroux (at) gmail.com)
 [AUTHOR](#lbAJ)
 
 * * * * *
-
