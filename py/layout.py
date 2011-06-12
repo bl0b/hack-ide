@@ -3,7 +3,9 @@ import os, sys
 from base import *
 from task import *
 
-__all__ = [ 'create_layout' ]
+__all__ = [ 'create_layout', 'layout2tmux' ]
+#DEBUG ONLY
+__all__ += [ 'lf', 'layout', 'reg_order' ]
 
 
 T_OPEN = '('
@@ -93,6 +95,7 @@ class pane(object):
         self.name = name
         self.task = all_tasks[name]
         self.index = -1
+        self.opts = None
 #    def tmux_cmds(self):
 #        p=self.task['P']
 #        t=self.task['T']
@@ -105,6 +108,10 @@ class pane(object):
         pass
     def first_pane(self):
         return self
+    def __str__(self):
+        return self.task['T']
+    def __repr__(self):
+        return self.task['T']
 
 class splitter(object):
     top_index = 0
@@ -137,8 +144,66 @@ class splitter(object):
 
         return sorted(l, None, lambda x: x[0])
 
+    def __str__(self):
+        if self.opts.startswith("-v"):
+            sep = "--"+self.opts[6:]
+        else:
+            sep = "|"+self.opts[6:]
+        return "(%s %s %s)"%(str(self.a), sep, str(self.b))
+    def __repr__(self):
+        return str(self)
+
 
 layout = None
+
+
+def pane2cmd(x, p, opts):
+    if x.index==-1:
+        x.index = splitter.alloc_index()
+    return [(p and p.index, opts, x.task)]
+
+def lf(l, p=None, opts=None):
+    print "l =", l, type(l), "p =", p, type(p)
+    fp = l.first_pane()
+    if p is None:
+        splitter.top_index=-1
+    if fp.index==-1:
+        fp.index = splitter.alloc_index()
+    if type(l) is pane:
+        return pane2cmd(l, p, opts)
+    ret = pane2cmd(fp, p, opts)
+    if type(l.b) is splitter:
+        ret += lf(l.b, fp, l.opts)
+    if type(l.a) is splitter:
+        ret += lf(l.a, fp, l.a.opts)
+    #if type(l.a) is splitter:
+    #else:
+    #    ret += [(None, None, None, 'p=', p, 'type(p)=', type(p), 'type(l)=', type(l))]
+    return ret
+
+
+def reg_order(l):
+    def reg_if_new(x, v, p, opts):
+        if x.task.task_index!=-1:
+            return
+        x.index = v()
+        x.task.task_index = x.index
+        x.task.opts = opts
+        x.task.parent = p
+    def rec_reg(l):
+        if type(l) is splitter:
+            fp = l.first_pane()
+            sp = l.b.first_pane()
+            reg_if_new(fp, splitter.alloc_index, None, None)
+            l.index = fp.task
+            reg_if_new(sp, splitter.alloc_index, l.index, l.opts)
+            rec_reg(l.b)
+            rec_reg(l.a)
+    for x in all_tasks.values():
+        x.task_index = -1
+    splitter.top_index=-1
+    rec_reg(l)
+
 
 def create_layout(l):
     global layout
@@ -155,6 +220,14 @@ def create_layout(l):
     tokiter = iter(tokens)
     accept(tokiter.next(), T_OPEN)
     layout = parse_layout(tokiter)
-    layout.set_index()
-    return map(lambda x: x[1] is None and tmux_window(x[3]) or tmux_split(*x[1:]), layout.flat_pane_list())
+    #layout.set_index()
+    #return map(lambda x: x[1] is None and tmux_window(x[3]) or tmux_split(*x[1:]), layout.flat_pane_list())
+    #L = lf(layout, None)
+    reg_order(layout)
+    return layout
+
+def layout2tmux():
+    L = sorted(all_tasks.values(), None, lambda x: x.task_index)
+    print L
+    return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
 

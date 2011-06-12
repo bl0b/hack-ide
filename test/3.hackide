@@ -1,0 +1,7 @@
+context fract
+
+task f1 => cmd . echo f1; cat -
+task f2 => cmd . echo f2; cat -
+task f3 => cmd . echo f3; cat -
+
+layout ((f1 |50 f2) --50 f3)

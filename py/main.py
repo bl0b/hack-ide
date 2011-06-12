@@ -4,8 +4,9 @@ import os, sys
 
 from task import *
 from hackide import *
+from layout import *
 
-script_name = sys.argv[1]
+script_name = len(sys.argv)>1 and sys.argv[1] or sys.argv[0]
 script_version = "0.1beta!"
 
 def version():
@@ -30,9 +31,10 @@ def respawn(hi, tmuxrc):
         ret = [ tmux('-f %s attach -t %s'%(tmuxrc, hi['context'])) ]
     else:
         print "[Spawning new session %s]"%hi['context']
+        lcmd = layout2tmux()
 
-        defensive_layout = hi['layout'][:1] # don't check for session before the new-session :)
-        defensive_layout += map(lambda b: 'has-session -t '+get_context_name()+" ';' "+b, hi['layout'][1:])
+        defensive_layout = lcmd[:1] # don't check for session before the new-session :)
+        defensive_layout += map(lambda b: 'has-session -t '+get_context_name()+" ';' "+b, lcmd[1:])
 
         all_cmds = [ '-f %s start-server'%tmuxrc ]
         all_cmds += defensive_layout

@@ -1,0 +1,6 @@
+tree .
+tree -a .
+rm .sw*
+tree -a .
+ls
+tree -a .

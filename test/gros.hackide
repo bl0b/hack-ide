@@ -1,0 +1,16 @@
+context fract
+
+task f1 => cmd . echo 1; cat -
+task f2 => cmd . echo 2; cat -
+task f3 => cmd . echo 3; cat -
+task f4 => cmd . echo 4; cat -
+task f5 => cmd . echo 5; cat -
+task f6 => cmd . echo 6; cat -
+task f7 => cmd . echo 7; cat -
+task f8 => cmd . echo 8; cat -
+
+
+#layout (((f1 |50 f2) --50 (f5 |50 f6)) |50 ((f3 |50 f4) --50 (f7 |50 f8)))
+#layout (((f1 |50 f2) |50 (f5 |50 f6)) --50 ((f3 |50 f4) |50 (f7 |50 f8)))
+#layout ((((f1 |50 f2) |33 f5) |25 f6) --50 (((f3 |50 f4) |33 f7) |25 f8))
+layout ((((f1 |50 f2) |33 f3) |25 f4) --50 (f5 |25 (f6 |33 (f7 |50 f8))))

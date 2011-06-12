@@ -1,0 +1,8 @@
+context hack-ide
+
+task editor => vim
+task sandbox => python py sandbox.py
+task shell => interactive_shell .
+
+layout ((sandbox --50 shell) |60 editor)
+

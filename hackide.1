@@ -1,0 +1,124 @@
+.TH hackide 1 "June 12, 2011" "version 0.1beta!" "USER COMMANDS"
+.SH NAME
+hackide \- creates a persistent work environment in a terminal.
+.SH SYNOPSYS
+.B hackide
+{-h|--help|help}
+.PP
+.B hackide
+description-file
+.PP
+.B hackide files
+description-file
+.PP
+.B hackide templates
+.PP
+.SH DESCRIPTION
+When invoked with a single filename as argument,
+.B hackide
+builds or restores a tmux session from a work-context description file (see section
+.B FILES
+). In a session, a number of tasks are laid out in a single window by successively splitting panes. Each task runs one command repetitively, so the command will respawn if it quits. The tasks can define a number of resource files to store its state and achieve persistence.
+.PP
+One can query the resource files related to a work-context by putting
+.B files
+before the description filename.
+.PP
+.B hackide
+also defines task templates to simplify writing the work-context description files. Invoke with the single argument
+.B templates
+to view the existing templates, as well as the template directory.
+.PP
+.SH FILES
+
+.SS work-context description
+This file contains three different types of lines :
+.PP
+context <context-name>
+.PP
+This line defines the context name, which will become the tmux session name.
+.PP
+task <name> => <template> [working-directory] [command-parameters]
+.PP
+This line declares a task.
+.B <name>
+may be followed (without SPACES !) by a comma-delimited list of rc file definitions in the form
+ "rc:<key>:<filename>". This will create an empty resource file by the name filename and this file can be mentioned in the command parameters by writing "%key%".
+.PP
+layout <layout-definition>
+.PP
+A layout consists of either horizontal or vertical splits of the terminal window. The syntax for a split is
+.B ( <first> <split-direction> <size-of-second-pane-in-%> <second> )
+where
+.I first
+and
+.I second
+are either a task name or a split.
+.I split-direction
+is
+.B |
+for an horizontal split
+or
+.B --
+for a vertical split.
+.PP
+For instance, "(foo |50 (bar --50 baz))" creates a window with task
+.I foo
+in the left half and task
+.I bar
+on top of task
+.I baz
+in the right half.
+
+.PP
+.B Example:
+.nf
+context test
+
+task editor => vim
+task sandbox,rc:pyhist:sandbox.pyhistory => cmd ./py PYHISTORY=%pyhist% python -i sandbox.py
+task shell => interactive_shell .
+
+layout ((sandbox --90 shell) |90 editor)
+.fi
+
+.SS task template
+
+Task templates contain three types of directives :
+.PP
+RC <key> <template_filename> (EMPTY|CONTENT)
+.PP
+Declares a resource file. When a task is created using this template, the
+.I template_filename
+is expanded using the dictionary of the task, that is :
+.nf
+{
+	'T':task_name,
+	'P':context_name,
+	'PARAM':task_parameter_string,
+	<any-rc-file-already-defined>
+}
+.fi
+If the last word is CONTENT, the file will be initialized from the template expansion of all the following lines until the line "END <key> CONTENT", where <key> is still the same.
+.PP
+CMD ...
+.PP
+Sets the command template. Whatever is on the right of the space after "CMD" will be expanded using the task dictionary.
+.PP
+DOC
+.PP
+Starts the documentation bloc. This directive should appear only once. The documentation is displayed when
+.B hack-ide templates
+is invoked. Documentation ends with a line that contains "END DOC".
+
+.SH TODO
+Call context templates from the commandline.
+.PP
+
+.SH BUGS
+Layouts with many windows don't work well. Some theoretically equivalent layouts are not equivalent in practice.
+.PP
+Sometimes when killing an interpreter the pane will die too. Need some ^D catching somewhere.
+.SH AUTHOR
+Damien "bl0b" Leroux (damien.leroux (at) gmail.com)
+

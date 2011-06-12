@@ -1,7 +1,8 @@
 import os, sys, re
 
 from base import *
-from task import create_task
+from task import create_task, all_tasks
+from rc_file import all_rc
 from layout import create_layout
 
 __all__ = [ 'read_hackide' ]
@@ -22,6 +23,8 @@ def read_hackide(f):
     if type(f) is str:
         f=open(f)
     ret = {}
+    all_rc.clear()
+    all_tasks.clear()
     for l in (l for l in (l.strip() for l in f.xreadlines()) if len(l)>0 and not l.startswith("#")):
         #print "reading line", l
         wlim = l.index(" ")

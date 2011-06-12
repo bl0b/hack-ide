@@ -49,10 +49,15 @@ class task(template):
         self['RC'] = ide_data_path
         self.task_index = len(all_tasks)
         self.pane_index = -1
+        self.opts = "UNSET"
         self.parent = None
         self.split_opts = ""
+    def __str__(self):
+        return self['T']+'(#%i p=%s o=%s)'%(self.task_index, str(self.parent and self.parent.task_index), str(self.opts))
+    def __repr__(self):
+        return self['T']+'(#%i p=%s o=%s)'%(self.task_index, str(self.parent and self.parent.task_index), str(self.opts))
     def tmux_shell_cmd(self):
-        return "printf '\033]2;%s\033\\' ; cd %s ; while true; do %s; done"%(self['T'], self.cmd_wd, self.parse(self.cmd_template))
+        return "printf '\033]2;%s\033\\' ; echo 'id:%i\nparent:%s\n'; cd %s ; while true; do %s; done"%(self['T'], self.task_index, str(self.parent and self.parent.task_index), self.cmd_wd, self.parse(self.cmd_template))
     def tmux_cmd(self):
         if self.parent is None:
             return tmux_window(self.tmux_shell_cmd())
