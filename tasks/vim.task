@@ -2,7 +2,7 @@ RC vimrc %T%.vimrc CONTENTS
 source /etc/vim/vimrc
 source ~/.vimrc
 let g:session_autosave = 'no'
-let g:session_directory = '%RC%'
+let g:session_directory = '%RC%/'
 map <F8> <Esc>:SaveSession %T%
 map <F5> <Esc>:OpenSession %T%
 END vimrc CONTENTS

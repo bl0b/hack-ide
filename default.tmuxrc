@@ -1,4 +1,1 @@
-start-server
-set-option mouse-select-pane off
-bind-key h command-prompt "new-window 'exec man %%'"
-set -g prefix ^A
+bind-key -n C-q kill-session

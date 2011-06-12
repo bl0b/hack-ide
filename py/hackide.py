@@ -23,7 +23,7 @@ def embed_hackide(l):
 
 
 processors = {
-    'context': set_context_name,
+    'context': lambda l: _inside_read_hackide>1 and get_context_name() or set_context_name(l),
     'task': create_task,
     'embed': embed_hackide,
     'layout': create_layout,

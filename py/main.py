@@ -45,16 +45,27 @@ def respawn(hi, tmuxrc):
         defensive_layout = lcmd[:1] # don't check for session before the new-session :)
         defensive_layout += map(lambda b: 'has-session -t '+get_context_name()+" ';' "+b, lcmd[1:])
 
-        all_cmds = [ '-f %s start-server'%tmuxrc ]
+        all_cmds = [ 'start-server' ]
         all_cmds += defensive_layout
-        all_cmds += [ '-f %s attach -t %s'%(tmuxrc, get_context_name()) ]
+        all_cmds += open(tmuxrc).xreadlines()
+        all_cmds += [ 'attach -t %s'%(get_context_name()) ]
+       
 
+        ret = []
         try:
-            ret = [ tmux(c) for c in all_cmds ]
+            for c in all_cmds:
+                ret.append(tmux(c))
         except ValueError, ve:
+            if ve.message == all_cmds[-1]:
+                try:
+                    print "[Killing session %s]"%get_context_name()
+                    tmux('kill-session -t '+get_context_name())
+                except ValueError, ve:
+                    pass
+                return ret
             print "An error occurred while creating session"
             print ve
-            return []
+            return ret
 
     return ret
 

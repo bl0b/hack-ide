@@ -10,9 +10,9 @@ def tmux(*args):
     cmd = ' '.join(args)
     #l = [x.strip() for x in os.popen('tmux '+cmd+' ; echo $?').xreadlines()]
     #return (cmd, l[:-1], int(l[-1]))
-    #print "TMUX>", repr(cmd)
+    print "TMUX>", repr(cmd)
     ret = (cmd, os.system('tmux '+cmd))
-    #print ret[1]
+    print ret[1]
     if ret[1]!=0:
         raise ValueError(cmd)
     return ret

@@ -77,7 +77,8 @@ class task(template):
     def __repr__(self):
         return self['T']+'(#%i p=%s o=%s)'%(self.task_index, str(self.parent and self.parent.task_index), str(self.opts))
     def tmux_shell_cmd(self):
-        return "printf '\033]2;%s\033\\' ; echo 'pane:%i\ntask:%i\nparent:%s\n'; cd %s ; while true; do %s; done"%(self['T'], self.pane_index, self.task_index, str(self.parent and self.parent.task_index), self.cmd_wd, self.parse(self.cmd_template))
+        #return "printf '\033]2;%s\033\\' ; echo 'pane:%i\ntask:%i\nparent:%s\n'; cd %s ; while true; do %s; done"%(self['T'], self.pane_index, self.task_index, str(self.parent and self.parent.task_index), self.cmd_wd, self.parse(self.cmd_template))
+        return "printf '\033]2;%s\033\\' ; cd %s ; while true; do %s; done"%(self['T'], self.cmd_wd, self.parse(self.cmd_template))
     def tmux_cmd(self):
         if self.parent is None:
             return tmux_window(self.tmux_shell_cmd())
@@ -134,7 +135,12 @@ def create_task_class(descfilename):
     def init_wrapper(self, contextname, taskname, param):
         param = param.strip()
         x = param.find(' ')
-        wd, par = x==-1 and '.' or param[:x], param[x+1:]
+        if x==-1:
+            wd = param
+            par = ""
+        else:
+            wd = param[:x]
+            par = param[x+1:]
         task.__init__(self, contextname, taskname, par)
         self.cmd_wd = wd
         self['PARAM'] = par
