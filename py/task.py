@@ -4,8 +4,28 @@ from base import *
 from tmux import *
 from rc_file import *
 
+__all__ = [ 'all_tasks', 'all_embedded', 'get_task_prefix', 'push_task_prefix', 'pop_task_prefix', 'create_task', 'create_task_class', 'task_registry', 'rc_file' ]
+
+task_prefix = ""
+
+get_task_prefix = lambda: task_prefix
+
+def push_task_prefix(v):
+    global task_prefix
+    task_prefix = task_prefix and '%s_%s_'%(task_prefix, v) or v+'_'
+    return task_prefix
+
+def pop_task_prefix():
+    global task_prefix
+    task_prefix = '_'.join(task_prefix.split('_')[:-2])
+    if task_prefix:
+        task_prefix += '_'
+    return task_prefix
+
 
 all_tasks = {}
+
+all_embedded = {}
 
 task_registry = {}
 
@@ -57,7 +77,7 @@ class task(template):
     def __repr__(self):
         return self['T']+'(#%i p=%s o=%s)'%(self.task_index, str(self.parent and self.parent.task_index), str(self.opts))
     def tmux_shell_cmd(self):
-        return "printf '\033]2;%s\033\\' ; echo 'id:%i\nparent:%s\n'; cd %s ; while true; do %s; done"%(self['T'], self.task_index, str(self.parent and self.parent.task_index), self.cmd_wd, self.parse(self.cmd_template))
+        return "printf '\033]2;%s\033\\' ; echo 'pane:%i\ntask:%i\nparent:%s\n'; cd %s ; while true; do %s; done"%(self['T'], self.pane_index, self.task_index, str(self.parent and self.parent.task_index), self.cmd_wd, self.parse(self.cmd_template))
     def tmux_cmd(self):
         if self.parent is None:
             return tmux_window(self.tmux_shell_cmd())
@@ -67,6 +87,8 @@ class task(template):
 
 def create_task(t):
     name, rmember = [x.strip() for x in t.split(" => ")]
+    if task_prefix!="":
+        name = task_prefix+name
     i = rmember.find(" ")
     tasktype = i!=-1 and rmember[:i] or rmember
     param = i!=-1 and rmember[i+1:] or ""

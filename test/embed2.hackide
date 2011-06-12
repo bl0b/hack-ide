@@ -1,0 +1,5 @@
+context E2
+embed ../embed1.hackide a
+embed ../embed1.hackide b
+embed ../embed1.hackide c
+layout ((a |50 b) --50 c)

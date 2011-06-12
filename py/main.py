@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import os, sys
 
+from base import *
+from tmux import *
 from task import *
 from hackide import *
 from layout import *
@@ -25,10 +27,17 @@ def respawn(hi, tmuxrc):
     print 'DEBUG', hi['layout']
     rc = '-f %s '%tmuxrc
     ret = []
-    session_exists = tmux('has-session -t '+hi['context'])[1]==0
+    try:
+        session_exists = tmux('has-session -t '+hi['context'])[1]==0
+    except ValueError, ve:
+        session_exists = False
     if session_exists:
         print "[Reattaching to existing session %s]"%hi['context']
-        ret = [ tmux('-f %s attach -t %s'%(tmuxrc, hi['context'])) ]
+        try:
+            ret = [ tmux('-f %s attach -t %s'%(tmuxrc, hi['context'])) ]
+        except ValueError, ve:
+            print "An error occurred while sending command", ve.message
+            return []
     else:
         print "[Spawning new session %s]"%hi['context']
         lcmd = layout2tmux()
@@ -40,7 +49,12 @@ def respawn(hi, tmuxrc):
         all_cmds += defensive_layout
         all_cmds += [ '-f %s attach -t %s'%(tmuxrc, get_context_name()) ]
 
-        ret = [ tmux(c) for c in all_cmds ]
+        try:
+            ret = [ tmux(c) for c in all_cmds ]
+        except ValueError, ve:
+            print "An error occurred while creating session"
+            print ve
+            return []
 
     return ret
 
@@ -48,6 +62,12 @@ def respawn(hi, tmuxrc):
 def main(args):
     tmuxrcdir = '/'.join(sys.path[0].split('/')[:-1])
     tmuxrc = rc_file('tmuxrc', open(tmuxrcdir+'/default.tmuxrc').read()).path
+    taskdefdir = tmuxrcdir+'/tasks'
+    for task_def in os.listdir(taskdefdir):
+        if not task_def.endswith('.task'):
+            continue
+        #print "importing task template", task_def
+        create_task_class(taskdefdir+'/'+task_def)
     taskdefdir = tmuxrcdir+'/tasks'
     for task_def in os.listdir(taskdefdir):
         if not task_def.endswith('.task'):
@@ -62,7 +82,7 @@ def main(args):
         return 0
     if len(args)==1:
         if os.path.isfile(args[0]):
-            respawn(read_hackide(args[0]), tmuxrc)
+            respawn(read_hackide(open(args[0]).xreadlines()), tmuxrc)
         elif args[0]=='templates':
             print "Task template directory :", taskdefdir
             print
@@ -78,7 +98,7 @@ def main(args):
 
     if len(args)==2:
         if args[0]=='files':
-            read_hackide(args[1])
+            read_hackide(open(args[1]).xreadlines())
             print '\n'.join(sorted((rc.path for rc in all_rc.values())))
 
     return 0

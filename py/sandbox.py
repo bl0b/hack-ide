@@ -37,5 +37,5 @@ if __name__=='__main__':
     #print hi
     #print
     #print '\n'.join(all_cmds)
-    hi = read_hackide('../test/gros.hackide')
+    hi = read_hackide(open('../test/gros.hackide').xreadlines())
 

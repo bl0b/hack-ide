@@ -1,0 +1,4 @@
+context E1
+task f1 => cmd . echo %prefix%f1; cat -
+task f2 => cmd . echo %prefix%f2; cat -
+layout (f1 |50 f2)
