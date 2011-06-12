@@ -7,6 +7,7 @@ from tmux import *
 from task import *
 from hackide import *
 from layout import *
+from rc_file import *
 
 def version():
     print script_name, "version", script_version, "© 2011 Damien 'bl0b' Leroux"
