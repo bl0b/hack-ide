@@ -4,7 +4,7 @@ from base import *
 from tmux import *
 from rc_file import *
 
-__all__ = [ 'all_tasks', 'all_embedded', 'get_task_prefix', 'push_task_prefix', 'pop_task_prefix', 'create_task', 'create_task_class', 'task_registry', 'rc_file' ]
+__all__ = [ 'all_tasks', 'all_embedded', 'get_task_prefix', 'push_task_prefix', 'pop_task_prefix', 'create_task', 'create_task_class', 'task_registry', 'rc_file', 'user_dir_tasks', 'site_dir_tasks' ]
 
 task_prefix = ""
 
@@ -153,4 +153,17 @@ def create_task_class(descfilename):
         self.cmd_template = self.parse(CMD)
 
     return type(clsname, (task,), { '__init__':init_wrapper, 'doc':doc })
+
+
+
+# static module init
+
+site_dir_tasks = hackide_root+'/tasks'
+user_dir_tasks = os.getenv('HOME')+'/.hackide/tasks'
+os.path.isdir(user_dir_tasks) or os.makedirs(user_dir_tasks)
+for taskdefdir in (site_dir_tasks, user_dir_tasks):
+    for task_def in os.listdir(taskdefdir):
+        if not task_def.endswith('.task'):
+            continue
+        create_task_class(taskdefdir+'/'+task_def)
 

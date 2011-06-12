@@ -4,10 +4,11 @@ from base import *
 from task import *
 from tmux import *
 
-__all__ = [ 'create_layout', 'layout2tmux' ]
+__all__ = [ 'create_layout', 'layout2tmux', 'all_context_templates', 'site_dir_contexts', 'user_dir_contexts' ]
 #DEBUG ONLY
 __all__ += [ 'layout', 'reg_order' ]
 
+all_context_templates = {}
 
 T_OPEN = '('
 T_CLOSE = ')'
@@ -234,4 +235,17 @@ def layout2tmux():
     #print L
     #return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.pane_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
     return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
+
+
+
+# static module init
+
+site_dir_contexts = hackide_root+'/contexts/'
+user_dir_contexts = os.getenv('HOME')+'/.hackide/contexts'
+os.path.isdir(user_dir_contexts) or os.makedirs(user_dir_contexts)
+for contextdefdir in (site_dir_contexts, user_dir_contexts):
+    for context_def in os.listdir(contextdefdir):
+        if not context_def.endswith('.hackide'):
+            continue
+        all_context_templates[context_def[:-8]] = open(contextdefdir+context_def).readlines()
 

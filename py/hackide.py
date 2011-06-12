@@ -4,7 +4,7 @@ from base import *
 from task import *
 from task import template
 from rc_file import all_rc
-from layout import create_layout
+from layout import create_layout, all_context_templates
 
 __all__ = [ 'read_hackide' ]
 
@@ -15,7 +15,11 @@ def embed_hackide(l):
     prefix = words[1]
     t = template(zip((str(x) for x in xrange(1, len(words)-1)), words[2:]))
     t['prefix'] = push_task_prefix(prefix)
-    lines = ( t.parse(l) for l in open(name).xreadlines() )
+    if name in all_context_templates:
+        src = all_context_templates[name]
+    else:
+        src = open(name).xreadlines()
+    lines = ( t.parse(l) for l in src )
     all_embedded[prefix] = read_hackide(lines)
     pop_task_prefix()
     return all_embedded[prefix]

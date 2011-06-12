@@ -8,9 +8,6 @@ from task import *
 from hackide import *
 from layout import *
 
-script_name = len(sys.argv)>1 and sys.argv[1] or sys.argv[0]
-script_version = "0.1beta!"
-
 def version():
     print script_name, "version", script_version, "© 2011 Damien 'bl0b' Leroux"
     print
@@ -71,20 +68,7 @@ def respawn(hi, tmuxrc):
 
 
 def main(args):
-    tmuxrcdir = '/'.join(sys.path[0].split('/')[:-1])
-    tmuxrc = rc_file('tmuxrc', open(tmuxrcdir+'/default.tmuxrc').read()).path
-    taskdefdir = tmuxrcdir+'/tasks'
-    for task_def in os.listdir(taskdefdir):
-        if not task_def.endswith('.task'):
-            continue
-        #print "importing task template", task_def
-        create_task_class(taskdefdir+'/'+task_def)
-    taskdefdir = tmuxrcdir+'/tasks'
-    for task_def in os.listdir(taskdefdir):
-        if not task_def.endswith('.task'):
-            continue
-        #print "importing task template", task_def
-        create_task_class(taskdefdir+'/'+task_def)
+    tmuxrc = rc_file('tmuxrc', open(hackide_root+'/default.tmuxrc').read()).path
     if len(args)==0 or "-h" in args or "--help" in args or "help" in args:
         about()
         return 0
@@ -95,7 +79,9 @@ def main(args):
         if os.path.isfile(args[0]):
             respawn(read_hackide(open(args[0]).xreadlines()), tmuxrc)
         elif args[0]=='templates':
-            print "Task template directory :", taskdefdir
+            print "Task template directories :"
+            print site_dir_tasks
+            print user_dir_tasks
             print
             print "Available task templates :"
             print

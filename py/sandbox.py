@@ -13,14 +13,9 @@ from hackide import *
 if __name__=='__main__':
     os.unsetenv('TMUX')
     sys.argv+=['hackide']
-    from main import respawn
-    tmuxrc = rc_file("tmuxrc", open(sys.path[0]+'/../default.tmuxrc').read()).path
-    taskdefdir = '/'.join(sys.path[0].split('/')[:-1]+['tasks'])
-    for task_def in os.listdir(taskdefdir):
-        if not task_def.endswith('.task'):
-            continue
-        print "importing task template", task_def
-        create_task_class(taskdefdir+'/'+task_def)
+    from main import respawn, main
+    main(['sandbox'])
+    #tmuxrc = rc_file("tmuxrc", open(sys.path[0]+'/../default.tmuxrc').read()).path
     #print task_registry
     #hi = read_hackide(sys.path[0]+'/../sample.hackide')
     #print all_tasks.keys()
