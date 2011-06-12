@@ -32,7 +32,7 @@ to view the existing templates, as well as the template directory.
 .SH FILES
 
 .SS work-context description
-This file contains three different types of lines :
+This file contains four different types of lines :
 .PP
 context <context-name>
 .PP
@@ -44,6 +44,16 @@ This line declares a task.
 .B <name>
 may be followed (without SPACES !) by a comma-delimited list of rc file definitions in the form
  "rc:<key>:<filename>". This will create an empty resource file by the name filename and this file can be mentioned in the command parameters by writing "%key%".
+.PP
+embed <filename> <alias> <parameters...>
+.PP
+Embed another context inside this one. The contents of filename are expanded with a dictionary containing the alias name in
+.I prefix
+and positional arguments from
+.B parameters
+in
+.I 1, 2, 3...
+(this is unbounded, if you provide 999 words on the parameter line, %999% will be defined) and the result is read like a .hackide file. You can then use the alias directly in the layout definition.
 .PP
 layout <layout-definition>
 .PP
@@ -91,14 +101,18 @@ RC <key> <template_filename> (EMPTY|CONTENT)
 Declares a resource file. When a task is created using this template, the
 .I template_filename
 is expanded using the dictionary of the task, that is :
+
 .nf
+
 {
 	'T':task_name,
 	'P':context_name,
 	'PARAM':task_parameter_string,
 	<any-rc-file-already-defined>
 }
+
 .fi
+
 If the last word is CONTENT, the file will be initialized from the template expansion of all the following lines until the line "END <key> CONTENT", where <key> is still the same.
 .PP
 CMD ...
