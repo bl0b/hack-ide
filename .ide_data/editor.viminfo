@@ -1,0 +1,1336 @@
+# Ce fichier viminfo a été généré par Vim 7.3.
+# Vous pouvez l'éditer, mais soyez prudent.
+
+# 'encoding' dans lequel ce fichier a été écrit
+*encoding=utf-8
+
+
+# hlsearch on (H) or off (h):
+~h
+# Dernier motif de recherche  :
+~MSle0~/repr
+
+# Dernier motif de recherche Substitue  :
+~MSle0&^
+
+# Dernières chaînes de substitution :
+$#
+
+# Historique ligne de commande (chronologie décroissante) :
+:w
+:edit py/base.py
+:SaveSession editor
+:'<,'>s/^/#
+:edit py/tmux.py
+:edit py/main.py
+:'<,'>s/_dir\>/&_tasks/g
+:edit py/task.py
+:'<,'>sg
+:s/_dir\>/&_contexts/g
+:edit py/layout.py
+:s
+:s/ctxt/context
+:s/task/ctxt
+:split py/task.py
+:s/ print/ #print
+:q
+:split py/tmux.py
+:s/is splitter/in (splitter, subcontext)
+:split py/layout.py
+:split py/main.py
+:edit py/sandbox.py
+:split
+:s/left =/return
+:s/lef/righ
+:vsplit
+:edit! hackide.1
+:w hackide.1
+:edit hackide.man
+:OpenSession mygothings
+:split sandbox.py
+:s/l.b.first_pane()/fp
+:173
+:split py/sandbox.py
+:split tasks/interactive_shell.task
+:split tasks/python.task
+:split tasks/vim.task
+:split py/hackide.py
+:edit py/ext/__init__.py
+:%s/\<context_name\>/get_context_name()/g
+:edit py/hackide.py
+:edit base.py
+:edit py/rc_file.py
+:s/hack-ide/%s
+:%s/project\(_\?\)name/context\1name/g
+:s/\['T']/.tmux_shell_cmd()
+:260
+:212
+:s/pane/self
+:'<,'>s/\(\w\+\) = '.*'/\1 = '\1'
+
+# Historique chaîne de recherche (chronologie décroissante) :
+?/repr
+?/+hi[
+?/returncode
+? \<tmux\>
+? ^
+?/taskde
+? _dir\>
+?/importing
+?/context
+?/embed
+? ctxt
+? task
+?/sub
+?/DEBUG
+?  print
+?/[^#]print
+?/pan
+? \<index\>
+? \<mode\>
+? \<splitter\>
+?/skip
+? \<subcontext\>
+?/is splitter
+?/emb
+? \<all_tasks\>
+?/all_ta
+?/create_ta
+? \<get_task_prefix\>
+?/l.opts.split
+?/'_'
+? \<task_prefix\>
+?/all_emb
+? \<embed_hackide\>
+? \<read_hackide\>
+?/in lines:
+? left =
+? lef
+? \<parse_layout\>
+? \<set_index\>
+? \<lf\>
+?/template
+?/task-name
+? \<par\>
+?/tmux_sh
+? l.b.first_pane()
+?/ver
+? \<respawn\>
+? \<cts\>
+?/tm
+? \<c\>
+
+# Historique expression (chronologie décroissante) :
+
+# Historique ligne de saisie (chronologie décroissante) :
+
+# Historique ligne de saisie (chronologie décroissante) :
+
+# Registres :
+"0	LINE	0
+	    cmd = ['tmux']+(type(args) is str and shlex.split(args) or list(args))
+"1	LINE	0
+	    if t.returncode!=0:
+	        raise ValueError(' '.join(args))
+"2	LINE	0
+	    #return 'new-session -n %s -s %s "%s" \';\' detach'%(app_name, get_context_name(), cmd)
+"3	LINE	0
+	    taskdefdir = '/'.join(sys.path[0].split('/')[:-1]+['tasks'])
+	    for task_def in os.listdir(taskdefdir):
+	        if not task_def.endswith('.task'):
+	            continue
+	        print "importing task template", task_def
+	        create_task_class(taskdefdir+'/'+task_def)
+"4	LINE	0
+	os.makedirs(user_dir)
+"5	LINE	0
+	        create_task_class(taskdefdir+'/'+task_def)
+"6	LINE	0
+	        #print "importing task template", task_def
+"7	LINE	0
+	            continue
+"8	LINE	0
+	        if not task_def.endswith('.task'):
+"9	LINE	0
+	    for task_def in os.listdir(taskdefdir):
+""-	CHAR	0
+	m
+
+# Marques dans le fichier :
+'0  23  0  ~/bl0b_dev/hack-ide/py/tmux.py
+'1  24  0  ~/bl0b_dev/hack-ide/py/tmux.py
+'2  25  0  ~/bl0b_dev/hack-ide/py/tmux.py
+'3  30  0  ~/bl0b_dev/hack-ide/py/tmux.py
+'4  28  0  ~/bl0b_dev/hack-ide/py/main.py
+'5  11  0  ~/bl0b_dev/hack-ide/py/main.py
+'7  32  0  ~/bl0b_dev/hack-ide/py/main.py
+'8  49  0  ~/bl0b_dev/hack-ide/py/main.py
+'9  81  0  ~/bl0b_dev/hack-ide/py/task.py
+
+# Liste de sauts (le plus récent en premier) :
+-'  23  0  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  1  0  ~/bl0b_dev/hack-ide/py/main.py
+-'  16  1  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  19  4  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  24  0  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  25  0  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  30  0  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  28  0  ~/bl0b_dev/hack-ide/py/main.py
+-'  64  12  ~/bl0b_dev/hack-ide/py/main.py
+-'  32  12  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  43  9  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  5  60  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  29  5  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  9  0  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  17  18  ~/bl0b_dev/hack-ide/py/sandbox.py
+-'  19  15  ~/bl0b_dev/hack-ide/py/sandbox.py
+-'  1  0  ~/bl0b_dev/hack-ide/py/sandbox.py
+-'  1  0  ~/bl0b_dev/hack-ide/py/rc_file.py
+-'  72  0  ~/bl0b_dev/hack-ide/py/main.py
+-'  247  4  ~/bl0b_dev/hack-ide/py/layout.py
+-'  7  66  ~/bl0b_dev/hack-ide/py/layout.py
+-'  246  0  ~/bl0b_dev/hack-ide/py/layout.py
+-'  195  42  ~/bl0b_dev/hack-ide/py/layout.py
+-'  180  36  ~/bl0b_dev/hack-ide/py/layout.py
+-'  155  9  ~/bl0b_dev/hack-ide/py/layout.py
+-'  139  41  ~/bl0b_dev/hack-ide/py/layout.py
+-'  135  41  ~/bl0b_dev/hack-ide/py/layout.py
+-'  61  18  ~/bl0b_dev/hack-ide/py/layout.py
+-'  11  4  ~/bl0b_dev/hack-ide/py/layout.py
+-'  250  65  ~/bl0b_dev/hack-ide/py/layout.py
+-'  248  11  ~/bl0b_dev/hack-ide/py/layout.py
+-'  60  16  ~/bl0b_dev/hack-ide/py/layout.py
+-'  176  8  ~/bl0b_dev/hack-ide/py/layout.py
+-'  251  22  ~/bl0b_dev/hack-ide/py/layout.py
+-'  238  0  ~/bl0b_dev/hack-ide/py/layout.py
+-'  1  0  ~/bl0b_dev/hack-ide/py/layout.py
+-'  11  0  ~/bl0b_dev/hack-ide/py/main.py
+-'  33  8  ~/bl0b_dev/hack-ide/py/main.py
+-'  32  0  ~/bl0b_dev/hack-ide/py/main.py
+-'  49  0  ~/bl0b_dev/hack-ide/py/main.py
+-'  46  8  ~/bl0b_dev/hack-ide/py/main.py
+-'  233  0  ~/bl0b_dev/hack-ide/py/layout.py
+-'  26  12  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  37  9  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  22  5  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  31  12  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  42  9  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  28  5  ~/bl0b_dev/hack-ide/py/tmux.py
+-'  36  9  ~/bl0b_dev/hack-ide/py/tmux.py
+
+# Historique des marques dans les fichiers (les plus récentes en premier) :
+
+> ~/bl0b_dev/hack-ide/py/main.py
+	"	31	8
+	^	54	33
+	.	28	51
+	+	80	33
+	+	86	20
+	+	85	0
+	+	88	0
+	+	87	0
+	+	82	27
+	+	76	46
+	+	77	16
+	+	53	0
+	+	28	20
+	+	31	7
+	+	28	21
+	+	31	22
+	+	34	50
+	+	38	0
+	+	53	0
+	+	60	0
+	+	31	0
+	+	26	0
+	+	34	64
+	+	25	0
+	+	42	43
+	+	43	27
+	+	42	94
+	+	46	36
+	+	49	18
+	+	59	13
+	+	32	47
+	+	39	27
+	+	32	65
+	+	39	54
+	+	41	0
+	+	44	0
+	+	51	0
+	+	58	0
+	+	75	16
+	+	13	8
+	+	16	12
+	+	72	0
+	+	72	25
+	+	11	23
+	+	100	27
+	+	11	6
+	+	12	40
+	+	22	17
+	+	22	0
+	+	22	0
+	+	72	14
+	+	72	7
+	+	4	0
+	+	11	59
+	+	40	39
+	+	42	30
+	+	43	97
+	+	9	19
+	+	40	27
+	+	65	0
+	+	72	58
+	+	90	50
+	+	6	17
+	+	5	0
+	+	27	7
+	+	28	68
+	+	30	29
+	+	33	11
+	+	34	72
+	+	36	70
+	+	37	21
+	+	34	0
+	+	37	20
+	+	52	11
+	+	53	47
+	+	57	20
+	+	23	4
+	+	24	4
+	+	46	0
+	+	45	0
+	+	49	38
+	+	51	0
+	+	49	87
+	+	50	7
+	+	49	25
+	+	47	17
+	+	48	36
+	+	49	28
+	+	11	0
+	+	71	0
+	+	72	0
+	+	71	51
+	+	82	47
+	+	83	32
+	+	84	17
+	+	28	51
+	+	34	55
+	+	40	17
+	+	45	82
+	+	43	88
+	+	48	39
+	+	54	32
+	+	28	51
+
+> ~/bl0b_dev/hack-ide/py/tmux.py
+	"	23	0
+	^	23	32
+	.	23	31
+	+	6	0
+	+	9	0
+	+	3	17
+	+	37	0
+	+	16	8
+	+	15	14
+	+	20	13
+	+	17	15
+	+	6	0
+	+	7	20
+	+	37	83
+	+	40	83
+	+	37	86
+	+	15	27
+	+	10	10
+	+	16	26
+	+	5	48
+	+	36	4
+	+	37	43
+	+	15	4
+	+	17	4
+	+	15	4
+	+	19	28
+	+	17	4
+	+	15	4
+	+	40	25
+	+	15	4
+	+	17	4
+	+	44	0
+	+	42	12
+	+	43	0
+	+	36	0
+	+	37	70
+	+	35	33
+	+	37	62
+	+	40	73
+	+	39	46
+	+	43	3
+	+	16	40
+	+	9	0
+	+	28	0
+	+	32	0
+	+	27	23
+	+	32	3
+	+	31	18
+	+	32	0
+	+	31	14
+	+	30	20
+	+	32	38
+	+	30	22
+	+	32	0
+	+	37	60
+	+	40	37
+	+	37	25
+	+	40	90
+	+	43	19
+	+	5	61
+	+	42	19
+	+	43	9
+	+	32	0
+	+	30	32
+	+	12	19
+	+	20	40
+	+	21	38
+	+	24	19
+	+	25	32
+	+	22	20
+	+	21	42
+	+	25	76
+	+	19	4
+	+	19	0
+	+	22	43
+	+	21	26
+	+	22	51
+	+	23	31
+
+> ~/bl0b_dev/hack-ide/NERD_tree_1
+	"	4	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/bl0b_dev/hack-ide/py/base.py
+	"	1	101
+	^	1	102
+	.	1	101
+	+	2	0
+	+	8	0
+	+	13	4
+	+	17	23
+	+	1	50
+	+	12	11
+	+	1	98
+	+	5	0
+	+	18	0
+	+	19	22
+	+	2	0
+	+	3	9
+	+	19	15
+	+	20	0
+	+	1	110
+	+	1	0
+	+	1	101
+
+> ~/bl0b_dev/hack-ide/py/task.py
+	"	164	0
+	^	7	197
+	.	161	0
+	+	118	12
+	+	151	37
+	+	144	32
+	+	137	11
+	+	137	21
+	+	144	57
+	+	136	28
+	+	124	34
+	+	107	11
+	+	124	37
+	+	147	21
+	+	59	109
+	+	147	0
+	+	155	0
+	+	154	0
+	+	152	0
+	+	155	80
+	+	124	0
+	+	129	13
+	+	155	70
+	+	79	23
+	+	75	0
+	+	77	12
+	+	76	52
+	+	78	0
+	+	72	26
+	+	73	23
+	+	76	72
+	+	78	51
+	+	73	25
+	+	76	72
+	+	78	72
+	+	76	30
+	+	78	32
+	+	76	37
+	+	78	37
+	+	76	60
+	+	78	60
+	+	81	174
+	+	81	65
+	+	9	15
+	+	11	37
+	+	15	18
+	+	12	9
+	+	25	0
+	+	17	0
+	+	12	0
+	+	20	20
+	+	15	33
+	+	20	54
+	+	13	8
+	+	92	26
+	+	91	18
+	+	92	30
+	+	91	21
+	+	26	0
+	+	28	11
+	+	7	160
+	+	14	21
+	+	19	0
+	+	20	50
+	+	15	63
+	+	20	55
+	+	25	49
+	+	22	25
+	+	25	0
+	+	16	21
+	+	23	0
+	+	15	67
+	+	15	0
+	+	92	27
+	+	25	36
+	+	25	0
+	+	100	0
+	+	75	0
+	+	81	158
+	+	144	78
+	+	143	28
+	+	144	0
+	+	80	8
+	+	81	88
+	+	163	0
+	+	170	0
+	+	163	0
+	+	170	0
+	+	164	0
+	+	169	0
+	+	158	0
+	+	159	19
+	+	164	24
+	+	162	46
+	+	164	38
+	+	165	3
+	+	166	7
+	+	167	11
+	+	168	3
+	+	168	0
+	+	163	7
+	+	7	196
+	+	161	0
+
+> ~/bl0b_dev/hack-ide/py/layout.py
+	"	7	108
+	^	7	109
+	.	7	108
+	+	159	54
+	+	185	55
+	+	203	27
+	+	203	45
+	+	203	32
+	+	203	0
+	+	203	0
+	+	186	0
+	+	205	24
+	+	203	33
+	+	203	20
+	+	203	16
+	+	203	0
+	+	209	19
+	+	209	11
+	+	203	0
+	+	186	24
+	+	203	0
+	+	206	0
+	+	188	0
+	+	189	30
+	+	203	0
+	+	189	27
+	+	188	17
+	+	191	18
+	+	190	8
+	+	198	33
+	+	198	61
+	+	190	23
+	+	203	0
+	+	196	23
+	+	198	24
+	+	203	0
+	+	202	15
+	+	203	0
+	+	209	0
+	+	209	8
+	+	201	30
+	+	198	35
+	+	192	24
+	+	194	26
+	+	190	13
+	+	195	13
+	+	198	13
+	+	195	23
+	+	196	24
+	+	198	23
+	+	198	0
+	+	237	77
+	+	184	39
+	+	209	0
+	+	207	0
+	+	199	22
+	+	186	0
+	+	186	0
+	+	198	0
+	+	196	0
+	+	197	0
+	+	186	0
+	+	187	0
+	+	236	4
+	+	237	74
+	+	199	8
+	+	192	12
+	+	157	8
+	+	207	5
+	+	220	0
+	+	235	0
+	+	11	25
+	+	240	0
+	+	240	0
+	+	252	0
+	+	246	36
+	+	248	37
+	+	246	0
+	+	247	0
+	+	248	0
+	+	251	26
+	+	246	0
+	+	247	0
+	+	248	0
+	+	251	0
+	+	250	64
+	+	246	39
+	+	250	88
+	+	7	66
+	+	247	19
+	+	247	48
+	+	246	0
+	+	243	11
+	+	244	11
+	+	246	20
+	+	247	0
+	+	246	19
+	+	246	41
+	+	247	0
+	+	245	0
+	+	243	0
+	+	244	0
+	+	7	108
+
+> ~/bl0b_dev/hack-ide/py/hackide.py
+	"	1	0
+	^	21	37
+	.	21	37
+	+	29	0
+	+	3	0
+	+	9	27
+	+	62	22
+	+	4	39
+	+	6	25
+	+	49	20
+	+	43	21
+	+	45	0
+	+	54	39
+	+	55	0
+	+	54	38
+	+	55	0
+	+	56	19
+	+	55	22
+	+	31	0
+	+	32	29
+	+	28	0
+	+	26	0
+	+	12	0
+	+	12	0
+	+	12	32
+	+	12	0
+	+	12	28
+	+	12	41
+	+	12	0
+	+	12	17
+	+	12	17
+	+	12	0
+	+	12	0
+	+	12	0
+	+	69	0
+	+	12	0
+	+	54	38
+	+	55	40
+	+	32	26
+	+	57	8
+	+	32	25
+	+	16	17
+	+	14	18
+	+	16	54
+	+	21	59
+	+	23	16
+	+	14	19
+	+	15	20
+	+	16	52
+	+	23	17
+	+	16	61
+	+	23	26
+	+	17	27
+	+	24	20
+	+	25	30
+	+	58	26
+	+	59	19
+	+	60	3
+	+	61	7
+	+	62	11
+	+	65	36
+	+	17	12
+	+	4	17
+	+	5	0
+	+	17	4
+	+	17	0
+	+	41	23
+	+	45	12
+	+	47	31
+	+	48	3
+	+	49	25
+	+	54	27
+	+	41	23
+	+	47	9
+	+	54	32
+	+	68	28
+	+	54	22
+	+	54	23
+	+	54	26
+	+	47	54
+	+	68	0
+	+	68	0
+	+	54	0
+	+	54	0
+	+	42	0
+	+	42	0
+	+	46	4
+	+	51	8
+	+	52	8
+	+	57	0
+	+	62	0
+	+	67	0
+	+	50	4
+	+	18	18
+	+	7	54
+	+	20	0
+	+	21	3
+	+	20	0
+	+	22	0
+	+	19	13
+	+	22	36
+	+	19	14
+	+	21	37
+
+> ~/bl0b_dev/hack-ide/py/rc_file.py
+	"	1	0
+	^	2	0
+	.	3	0
+	+	1	14
+	+	3	0
+
+> ~/bl0b_dev/hack-ide/py/sandbox.py
+	"	17	18
+	^	17	19
+	.	17	18
+	+	11	37
+	+	11	16
+	+	11	4
+	+	11	31
+	+	11	17
+	+	11	41
+	+	12	20
+	+	11	31
+	+	11	10
+	+	11	23
+	+	11	25
+	+	11	8
+	+	11	0
+	+	11	0
+	+	11	8
+	+	11	0
+	+	11	32
+	+	11	0
+	+	11	53
+	+	11	0
+	+	11	0
+	+	11	19
+	+	11	0
+	+	12	0
+	+	11	15
+	+	11	19
+	+	11	22
+	+	11	37
+	+	11	0
+	+	11	31
+	+	11	0
+	+	11	0
+	+	11	1
+	+	11	0
+	+	11	15
+	+	11	31
+	+	11	36
+	+	11	36
+	+	11	25
+	+	11	0
+	+	11	22
+	+	11	0
+	+	5	17
+	+	11	0
+	+	11	0
+	+	11	0
+	+	11	0
+	+	11	0
+	+	7	19
+	+	11	0
+	+	12	0
+	+	11	0
+	+	9	20
+	+	5	0
+	+	11	0
+	+	8	20
+	+	11	29
+	+	11	16
+	+	11	28
+	+	11	28
+	+	11	31
+	+	11	31
+	+	24	0
+	+	18	37
+	+	20	23
+	+	19	35
+	+	19	40
+	+	19	17
+	+	19	40
+	+	12	0
+	+	11	0
+	+	11	0
+	+	11	0
+	+	11	0
+	+	11	0
+	+	18	47
+	+	20	24
+	+	20	22
+	+	21	0
+	+	20	22
+	+	19	40
+	+	20	35
+	+	19	19
+	+	12	0
+	+	20	4
+	+	30	4
+	+	31	4
+	+	32	4
+	+	33	4
+	+	34	30
+	+	35	44
+	+	15	25
+	+	16	27
+	+	35	62
+	+	6	0
+	+	7	0
+	+	19	0
+	+	17	9
+	+	18	4
+	+	17	18
+
+> ~/bl0b_dev/hack-ide/hackide.1
+	"	129	43
+	^	56	197
+	.	134	0
+	+	35	0
+	+	41	0
+	+	37	0
+	+	41	76
+	+	58	5
+	+	41	42
+	+	58	25
+	+	41	16
+	+	59	2
+	+	47	0
+	+	40	0
+	+	36	0
+	+	38	0
+	+	39	75
+	+	47	3
+	+	42	0
+	+	45	95
+	+	46	22
+	+	46	25
+	+	46	148
+	+	58	0
+	+	94	0
+	+	95	17
+	+	96	3
+	+	41	16
+	+	46	26
+	+	46	30
+	+	46	23
+	+	46	24
+	+	46	24
+	+	46	149
+	+	46	22
+	+	46	20
+	+	46	75
+	+	46	84
+	+	46	141
+	+	46	147
+	+	46	140
+	+	60	35
+	+	94	0
+	+	60	119
+	+	82	0
+	+	61	12
+	+	60	98
+	+	61	67
+	+	62	10
+	+	61	64
+	+	62	5
+	+	81	17
+	+	85	1
+	+	93	2
+	+	86	0
+	+	93	0
+	+	44	4
+	+	96	0
+	+	97	50
+	+	99	44
+	+	103	17
+	+	101	72
+	+	103	53
+	+	104	3
+	+	113	3
+	+	103	54
+	+	106	1
+	+	108	0
+	+	109	18
+	+	111	31
+	+	112	0
+	+	121	39
+	+	111	0
+	+	110	0
+	+	121	0
+	+	120	119
+	+	127	0
+	+	126	10
+	+	132	8
+	+	128	0
+	+	132	7
+	+	128	8
+	+	133	112
+	+	133	92
+	+	126	66
+	+	115	178
+	+	135	50
+	+	136	0
+	+	130	2
+	+	35	22
+	+	48	40
+	+	57	2
+	+	106	0
+	+	113	0
+	+	115	0
+	+	104	0
+	+	49	0
+	+	57	0
+	+	50	122
+	+	54	1
+	+	51	1
+	+	56	133
+	+	134	0
+
+> ~/bl0b_dev/hack-ide/hackide.man
+	"	4	0
+	^	4	0
+	.	4	0
+	+	1	64
+	+	3	63
+	+	4	0
+
+> ~/bl0b_dev/hack-ide/sandbox.py
+	"	1	0
+
+> ~/bl0b_dev/hack-ide/tasks/cmd.task
+	"	3	49
+	.	4	0
+	+	5	0
+	+	2	3
+	+	4	6
+	+	3	14
+	+	4	0
+
+> ~/bl0b_dev/hack-ide/tasks/vim.task
+	"	17	6
+	.	16	0
+	+	14	209
+	+	16	39
+	+	16	3
+	+	14	3
+	+	16	0
+	+	16	0
+	+	17	6
+	+	15	48
+	+	16	0
+
+> ~/bl0b_dev/hack-ide/tasks/python.task
+	"	7	6
+	^	7	7
+	.	7	6
+	+	8	0
+	+	4	113
+	+	4	33
+	+	5	87
+	+	6	53
+	+	5	103
+	+	7	6
+
+> ~/bl0b_dev/hack-ide/tasks/interactive_shell.task
+	"	4	0
+	^	4	71
+	.	5	6
+	+	4	71
+	+	5	6
+
+> ~/bl0b_dev/hack-ide/base.py
+	"	11	0
+	^	11	0
+	.	2	0
+	+	2	0
+
+> ~/bl0b_dev/hack-ide/py/ext/__init__.py
+	"	3	0
+	^	3	17
+	.	3	16
+	+	1	0
+	+	4	0
+	+	1	15
+	+	3	16
+
+> ~/bl0b_dev/hack-ide/py/ext/task.py
+	"	1	0
+	.	1	0
+	+	1	10
+	+	1	0
+	+	1	44
+	+	1	22
+	+	1	0
+	+	1	23
+	+	1	7
+	+	1	44
+	+	1	31
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	22
+	+	1	8
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	43
+	+	1	33
+	+	1	0
+	+	1	0
+
+> ~/bl0b_dev/hack-ide/py/startup.py
+	"	1	0
+
+> ~/bl0b_dev/hack-ide/sample.hackide
+	"	8	0
+	^	3	27
+	.	3	17
+	+	2	19
+	+	1	0
+	+	2	0
+	+	7	6
+	+	2	3
+	+	7	6
+	+	7	5
+	+	3	76
+	+	7	0
+	+	7	35
+	+	8	0
+	+	1	7
+	+	3	4
+	+	1	12
+	+	3	15
+	+	4	4
+	+	3	4
+	+	4	47
+	+	5	0
+	+	4	16
+	+	5	11
+	+	3	12
+	+	4	12
+	+	5	10
+	+	4	12
+	+	5	11
+	+	4	13
+	+	3	13
+	+	4	15
+	+	5	12
+	+	1	0
+	+	4	20
+	+	1	6
+	+	7	13
+	+	3	0
+	+	4	3
+	+	1	6
+	+	3	17
+
+> ~/bl0b_dev/hack-ide/test.sh
+	"	7	0
+	^	8	53
+	.	8	52
+	+	3	0
+	+	13	19
+	+	3	23
+	+	4	23
+	+	7	21
+	+	7	24
+	+	4	23
+	+	7	17
+	+	7	50
+	+	8	24
+	+	8	0
+	+	7	0
+	+	5	0
+	+	9	0
+	+	10	29
+	+	11	36
+	+	8	52
+
+> ~/bl0b_dev/hack-ide/tmux-ide.sh
+	"	1	0
+
+> ~/bl0b_dev/hack-ide/sample.template
+	"	1	0
+	.	1	0
+	+	1	12
+	+	1	0
+
+> ~/bl0b_dev/hack-ide/.ide_data/PROJECTNAME.vimrc
+	"	1	0
+	^	4	27
+	.	4	26
+	+	4	26
+
+> ~/bl0b_dev/mygothings/py/sandbox.py
+	"	1	0
+	^	2	44
+	.	2	43
+	+	2	43
+
+> ~/bl0b_dev/mygothings/NERD_tree_1
+	"	12	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/bl0b_dev/mygothings/py/goban.py
+	"	1	0
+
+> ~/bl0b_dev/mygothings/py/grid.py
+	"	1	0
+
+> ~/bl0b_dev/mygothings/py/NERD_tree_1
+	"	4	0
+	.	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+	+	1	0
+
+> ~/bl0b_dev/mygothings/py/startup.py
+	"	13	0
+	^	26	0
+	.	1	0
+	+	1	0
+
+> ~/bl0b_dev/mygothings/py/mygothings.vimrc
+	"	1	14
+	^	1	15
+	.	1	14
+	+	3	15
+	+	5	47
+	+	4	8
+	+	5	21
+	+	4	53
+	+	5	46
+	+	4	5
+	+	5	0
+	+	4	5
+	+	5	5
+	+	4	7
+	+	5	6
+	+	4	26
+	+	5	37
+	+	4	38
+	+	2	5
+	+	2	0
+	+	6	21
+	+	1	14
+
+> ~/bl0b_dev/mygothings/py/NERD_tree_2
+	"	4	0
+	.	1	0
+	+	1	0
+
+> ~/bl0b_dev/mygothings/py/NERD_tree_3
+	"	4	0
+	.	1	0
+	+	1	0
+
+> ~/bl0b_dev/mygothings/py/NERD_tree_4
+	"	10	0
+	.	1	0
+	+	1	0
+	+	1	0
+
+> ~/bl0b_dev/mygothings/py/.makebuffer
+	"	1	15
+	.	1	0
+	+	1	0
+
+> ~/.vim/plugin/NERD_tree.vim
+	"	161	1
+	.	161	0
+	+	163	0
+	+	161	0
+
+> ~/bl0b_dev/mygothings/py/mygothings.vimsession
+	"	1	0
+
+> ~/.vimrc
+	"	32	0
+	.	33	0
+	+	33	0

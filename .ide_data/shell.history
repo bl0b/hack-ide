@@ -1,0 +1,181 @@
+
+cp ../mygothings/py/startup.py py/
+mkdir modules
+cd modules/
+touch __init__.py
+cd ..
+mv modules/ py/ext
+ls py/
+ls py/ -a
+ls py/.ide_data/ -a
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+rm -rf py/.ide_data/
+cat py/.ide_data/editor.vimrc 
+chmod +x test.sh 
+./test.sh 
+ls
+vim default.tmuxrc
+vim sample.hackide 
+edit default.tmuxrc 
+vim default.tmuxrc 
+vim py/.ide_data/tmuxrc 
+vim sample.hackide 
+mkdir tasks
+ls
+python py/sandbox.py -i
+python -i py/sandbox.py
+ls
+vim tasks/cmd
+cd tasks/
+ls
+mv cmd cmd.task
+mv interactive_shell interactive_shell.task
+mv python python.task
+mv vim vim.task
+vim vim.task
+vim *.task
+ls
+cd ..
+git add tasks/
+ls
+ls py/
+rm py/editor.vim 
+rm py/*.pyc
+ls py/
+rm -rf py/ext/
+ls
+tree .
+sudo apt-get install tree
+head -2 ../mumuse_go/py/sandbox.py
+vim tasks/vim.task 
+vim tasks/python.task 
+vim sample.hackide 
+vim tasks/cmd.task 
+vim tasks/*.task
+git init
+ls
+git add py/*.py
+git add tasks/
+git add tasks/*.task
+git remote add origin git@github.com:bl0b/hack-ide.git
+git add default.tmuxrc
+git add sample.hackide
+git commit -a
+git add hackide
+git commit -a
+git push
+git push -u origin master
+cp sample.hackide my.hackide
+vim my.hackide
+ls tasks/
+vim my.hackide
+nroff hackide.1 | less
+nroff hackide.1 | less -R
+nroff -man hackide.1 | less -R
+cat my.hackide 
+nroff -man hackide.1 | less -R
+cat tasks/interactive_shell.task 
+nroff -man hackide.1 | less -R
+git add hackide.1
+vim CMakeCPack.cmake 
+vim CMakeLists.txt 
+ls /usr/man
+ls /usr/share/man/man1/
+ls /usr/share/man/man1/|grep -v gz
+nroff -man hackide.1 | less -R
+vim CMakeLists.txt 
+nroff -man hackide.1 | less -R
+git add hackide.1
+git commit -a
+git add package/build.sh
+ls
+git add test
+vim COPYING 
+git commit -a
+git remove test
+git rm test/.gros.hackide.swp test/.ide_data/ test/.sw*
+git rm -r test/.gros.hackide.swp test/.ide_data/ test/.sw*
+git commit -a
+git rm -r test/.gros.hackide.swp test/.ide_data/ test/.sw*
+git commit -a
+ls
+git push
+git add CMakeLists.txt CMakeCPack.cmake
+git commit -a
+nroff -man hackide.1 | less -R
+sudo apt-get install pandoc
+git commit -a
+git push
+sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' hackide.1 | man2html | pandoc -f html -t markdown >> README.md 
+vim README.md 
+git commit -a
+vim README.md 
+git push
+vim embed1.hackide
+vim embed2.hackide
+vim embed1.hackide
+vim embed2.hackide
+grep all_tasks.clear py/*.py
+grep all_tasks\ = py/*.py
+vim embed1.hackide
+mv embed* test
+git add test/embed*
+git commit -a
+nroff -man hackide.1 | less -R
+git commit -a
+h html
+vim README.md 
+sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' hackide.1 | man2html | pandoc -f html -t markdown >> README.md 
+vim README.md 
+git commit -a
+git push
+git commit -a
+head -3 README.md 
+(echo -e 'Hack-IDE\n============";sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' hackide.1 | man2html | pandoc -f html -t markdown )> README.md 
+(echo -e 'Hack-IDE\n============';sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' hackide.1 | man2html | pandoc -f html -t markdown )> README.md 
+echo "(echo -e 'Hack-IDE\n============';sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' hackide.1 | man2html | pandoc -f html -t markdown )> README.md"
+(echo '#!/bin/bash'; echo "(echo -e 'Hack-IDE\n============';sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' hackide.1 | man2html | pandoc -f html -t markdown )> README.md") > gen_readme.sh
+cat gen_readme.sh
+chmod +x gen_readme.sh
+git add gen_readme.sh
+./gen_readme.sh 
+git commit -a
+git push
+git commit -a
+git push
+git commit -a
+mkdir contexts
+vim CMakeLists.txt 
+ls ~/.hackide/
+ls ~/.hackide/tasks/
+./py/main.py 
+./py/main.py toto
+./py/main.py toto templates
+./py/main.py toto templates|less -S
+./py/main.py toto templates
+vim /home/damien/.gitconfig 
+sudo vim /usr/local/bin/git_vimdiff
+sudo chmod +x /usr/local/bin/git_vimdiff
+git commit
+git diff py/sandbox.py
+git commit -a
+git push
+echo $TMUX
+ls -l $TMUX
+cat /var/run/tmux/tmux-1000/default 
+ls -l /var/run/tmux/tmux-1000/default 
+git commit -a
+git push
+hackide list hackide.hackide 
+hackide files hackide.hackide 

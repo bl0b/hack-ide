@@ -1,0 +1,520 @@
+g.dump()
+help(os.popen)
+help(os.shell)
+help(os.exec)
+help(exec)
+exec "o=1"
+o
+eval "o=1"
+eval "o=1", "bla"
+eval("o=1")
+eval(a)
+help(eval)
+sys.path
+sys.path[0]
+class
+class()
+help(type)
+help(type.__init__)
+type.__init__.__doc__
+help(type(x))
+help(type(a,b,c,d))
+a=b=c=d=0
+help(type(a,b,c,d))
+help(type(b,c,d))
+help(type('',c,d))
+help(type('',(object,),{}))
+help(type('',(object,),{'a':1}))
+help(type('pouet',(task,),{'a':1}))
+task_registry
+os.path.basename
+task_registry
+help(os.path.basename)
+os.path.basename('toto.pouet')
+os.path.basename('toto.pouet.dodo')
+rc_files
+rc_file.registyr
+rc_file.registry
+all_rc
+'o'.join('aaaa'.split('e'))
+'o'.join(''.split('e'))
+'a'.join('123')
+'azerty'.find(' ')
+'azerty'.find('t')
+hi
+l=hi|'layout']
+l=hi['layout']
+l
+layout
+from layout import layout
+layout
+layout.a
+layout.index
+layout.a.index
+layout.b.index
+layout.a.a.index
+layout.a.b.index
+layout.b.index
+layout.b.task
+create_layout('(editor |30 (sandbox --30 shell))')
+layout.a.index
+from layout import layout
+layout.a
+layout.a.index
+layout.b.index
+layout.b.a.index
+layout.b.b.index
+create_layout('(editor |30 (sandbox --30 shell))')
+layout.flat_pane_list()
+layout
+from layout import layout
+layout
+sys.ps1='> '
+sys.ps2=''
+def lf(l):
+	if type(l) is pane:
+		return ('sess', 'OPTS', l.task)
+	else:
+def lf(l, p):
+	if type(l) is pane and p is None:
+		return [('sess', p.opts, l.task)]
+	if type(l) is splitter:
+		cmd = p is None and 'sess' or 'split'
+		ret = [(cmd, p.opts, p.index, p.first_pane().task)]+lf(self.b, self)
+	return ret
+lf(layout)
+lf(layout, None)
+from layout import pane, splitter
+lf(layout, None)
+def lf(l, p):
+	if type(l) is pane and p is None:
+		return [('sess', p and p.opts, l.task)]
+	if type(l) is splitter:
+		return [(cmd, p.opts, p.index, p.first_pane().task)]+lf(self.b, self)
+	return None
+lf(layout, None)
+def lf(l, p):
+	if type(l) is pane and p is None:
+		return [(p and p.index, p and p.opts, l.task)]
+	if type(l) is splitter:
+		ret = [(p and p.index, p and p.opts, l.first_pane().task)]+lf(l.b, l)
+		if type(l.a) is splitter:
+			ret += lf(l.a, p)
+		return ret
+lf(layout)
+lf(layout, None)
+del lf
+from layout import lf
+del layout
+import layout
+del layout
+import layout
+from layout import *
+from layout import lf
+from layout import *
+lf
+from layout import lf
+lf
+layout
+from layout import layout
+lf(layout)
+lf(layout, None)
+layout
+from layout import layout
+layout
+lf(layout, None)
+print layout
+from layout import layout
+print layout
+from layout import layout
+print layout
+from layout import layout
+print layout
+lf(layout, None)
+print layout
+from layout import layout
+print layout
+lf(layout, None)
+from layout import layout
+lf(layout, None)
+from layout import layout
+lf(layout, None)
+from layout import layout, lf
+lf(layout, None)
+from layout import layout, lf
+layout
+create_layout(str(layout))
+layout
+from layout import layout, lf
+layout
+create_layout('((sandbox |50 shell) --50 editor)')
+layout
+from layout import layout, lf
+layout
+lf(layout)
+lf(layout, None)
+lf(layout)à
+lf(layout)
+!fr
+from layout import layout, lf
+lf(layout)
+from layout import layout, lf
+lf(layout)
+from layout import layout, lf
+lf(layout)
+layout
+from layout import layout, lf
+lf(layout)
+layout
+hi = read_hackide('../test/4.hackide')
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+layout
+hi = read_hackide('../test/gros.hackide')
+layout
+a
+a={'a':1}
+a.find('a')
+'a' in a
+dir(a)
+a.setdefault(42)
+a[44]
+a.fromkeys.__doc__
+hi = read_hackide('../test/gros.hackide')
+hi
+from layout import layout, lf
+lf(layout)
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+layout
+lf(layout)
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+layout
+lf(layout)
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+layout
+hf(layout)
+lf(layout)
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+layout
+lf(layout)
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+lf(layout)
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf
+reg_order(layout)
+from layout import layout, lf, reg_order
+reg_order(layout)
+from layout import layout, lf, reg_order
+reg_order(layout)
+from layout import layout, lf, reg_order
+reg_order(layout)
+from layout import layout, lf, reg_order
+reg_order(layout)
+all_tasks
+[(t.index, t) for t in all_tasks]
+[(t.task_index, t) for t in all_tasks]
+[(t.taskindex, t) for t in all_tasks]
+[(t.pane_index, t) for t in all_tasks]
+[(t.task_index, t) for t in all_tasks.values()]
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf, reg_order
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+all_tasks.clear()
+hi = read_hackide('../test/gros.hackide')
+all_rc.clear()
+all_tasks.clear()
+hi = read_hackide('../test/gros.hackide')
+from layout import layout, lf, reg_order
+[(t.task_index, t) for t in all_tasks.values()]
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+[(t.index, t) for t in all_tasks.values()]
+hi = read_hackide('../test/gros.hackide')
+reg_order(layout)
+[(t.index, t) for t in all_tasks.values()]
+[(t.task_index, t) for t in all_tasks.values()]
+for x in all_tasks.values(): x.task_index=-1
+from layout import layout, lf, reg_order
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+from layout import layout, lf, reg_order
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+hi = read_hackide('../test/gros.hackide')
+[(t.task_index, t) for t in all_tasks.values()]
+for x in all_tasks.values(): x.task_index=-1
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+from layout import layout
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+for x in all_tasks.values(): x.task_index=-1
+[(t.task_index, t) for t in all_tasks.values()]
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+from layout import layout
+reg_order(layout)
+[(t.task_index, t) for t in all_tasks.values()]
+sorted(all_tasks.values(), None, lambda x: x.task_index)
+dir(min(all_tasks.values()))
+min(all_tasks.values()).parent
+print all_tasks
+hi=read_hackide('../test/test.hackide')
+all_tasks
+sorted(all_tasks.values(), None, lambda x: x.task_index)
+'\n'.join(map(str, sorted(all_tasks.values(), None, lambda x: x.task_index)))
+print '\n'.join(map(str, sorted(all_tasks.values(), None, lambda x: x.task_index)))
+layout
+from layout import layout
+layout
+print '\n'.join(map(str, sorted(all_tasks.values(), None, lambda x: x.task_index)))
+hi = read_hackide('../test/5.hackide')
+print '\n'.join(map(str, sorted(all_tasks.values(), None, lambda x: x.task_index)))
+from layout import layout
+layout
+print '\n'.join(map(str, sorted(all_tasks.values(), None, lambda x: x.task_index)))
+respawn(hi)
+from main import respawn
+respawn(hi)
+sys.argv
+sys.argv+=["hackide"]
+sys.argv
+from main import respawn
+respawn(hi)
+respawn(hi, tmuxrc)
+dir(os)
+filter(lambda x: "env" in x, dir(os))
+os.unsetenv('TMUX')
+respawn(hi, tmuxrc)
+from main import respawn
+sys.argv+=["hackide"]
+from main import respawn
+respawn(hi, tmuxrc)
+os.unsetenv('TMUX')
+respawn(hi, tmuxrc)
+sys.argv+=["hackide"]
+from main import respawn
+respawn(hi, tmuxrc)
+os.unsetenv('TMUX')
+respawn(hi, tmuxrc)
+hi = read_hackide('../test/gros.hackide')
+respawn(hi, tmuxrc)
+from layout import layout
+layout
+create_layout('(((f1 |50 f2) |33 f3) |75 f4) --50 (((f5 |50 f6) |33 f7) |75 f8))')
+create_layout('((((f1 |50 f2) |33 f3) |75 f4) --50 (((f5 |50 f6) |33 f7) |75 f8))')
+hi['layout'] = create_layout('((((f1 |50 f2) |33 f3) |75 f4) --50 (((f5 |50 f6) |33 f7) |75 f8))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f1 |25 (f2 |33 (f3 |75 f4)))) --50 (((f5 |50 f6) |33 f7) |75 f8))')
+hi['layout'] = create_layout('((f1 |25 (f2 |33 (f3 |75 f4))) --50 (((f5 |50 f6) |33 f7) |75 f8))')
+respawn(hi, tmuxrc)
+hi = read_hackide('../test/3.hackide')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('(f1 |50 (f2 |50 f3))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f1 |50 f2) |50 f3))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f1 |50 f2) --50 f3))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f1 --50 f2) --50 f3))')
+respawn(hi, tmuxrc)
+hi = read_hackide('../test/test.hackide')
+respawn(hi, tmuxrc)
+from layout import layout
+layout
+respawn(hi, tmuxrc)
+layout
+hi = read_hackide('../test/5.hackide')
+from layout import layout
+layout
+respawn(hi, tmuxrc)
+layout
+respawn(hi, tmuxrc)
+sys.argv+=["hackide"]
+from main import respawn
+respawn(hi, tmuxrc)
+os.unsetenv('TMUX')
+respawn(hi, tmuxrc)
+layout
+from main import respawn
+layout
+from layout import layout
+layout
+respawn(hi, tmuxrc)
+from layout import layout
+layout
+respawn(hi, tmuxrc)
+from layout import layout
+layout
+respawn(hi, tmuxrc)
+create_layout('(f1 |50 f2)')
+hi['layout'] = create_layout('(f1 |50 f2)')
+respawn(hi, tmuxrc)
+print hi['layout']
+hi['layout'] = create_layout('(f1 |50 f2)')
+print hi['layout']
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('(f1 |50 (f2 --50 f3))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f2 --50 f3) |50 f1)')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f2 --50 f3) |50 (f1 --50 f4))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('((f2 --50 f3) --50 (f1 --50 f4))')
+respawn(hi, tmuxrc)
+hi['layout'] = create_layout('(((f1 --50 f2) --50 (f3 --50 f4)) |50 f5)')
+respawn(hi, tmuxrc)
+print hi['layout']
+respawn(hi, tmuxrc)
+create_layout('f1')
+hi = read_hackide('../embed2.hackide')
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+all_embedded
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+from tmux import tmux
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+all_tasks
+hi['layout']
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+print txt[i]
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+hi['layout']
+all_tasks
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+all_tasks
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+all_tasks
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+all_tasks
+respawn(hi, tmuxrc)
+all_tasks
+respawn(hi, tmuxrc)
+number
+float
+isa
+float is int
+int is float
+0 is int
+dir(object)
+dir(object.__class__)
+dir(splitter)
+from layout import pane, splitter
+splitter
+dir(splitter)
+mro(splitter)
+splitter.__mro__
+from layout import embed
+from layout import embedded
+from layout import subcontext
+splitter in splitter.__mro__
+splitter in pane.__mro__
+splitter in subcontext.__mro__
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+all_tasks
+layout2tmux()
+'\n'.join(layout2tmux())
+print '\n'.join(layout2tmux())
+print '\n'.join(map(repr, layout2tmux()))
+respawn(hi, tmuxrc)
+print '\n'.join(map(repr, layout2tmux()))
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+print '\n'.join(map(repr, layout2tmux()))
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+respawn(hi, tmuxrc)
+ret = respawn(hi, tmuxrc)
+filter(lambda x: x[1], ret)
+ret = respawn(hi, tmuxrc)
+dir(ValueError)
+x=ValueError('bla')
+x.message
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+layout2tmux()
+x=layout2tmux()
+x
+" ';' ".join(x)
+tmux(x+" ';' attach -t E1")
+tmux(" ';' ".join(x)+" ';' attach -t E1")
+"\n".join(x)
+print "\n".join(x)
+print "\n".join(map(repr, x))
+ret = respawn(hi, tmuxrc)
+print "\n".join(map(repr, x))
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+[1,2,3].insert(2, 5)
+x=[1,2,3]
+x.insert(2, 5)
+x
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi['layout']
+hi['layout'] = create_layout('((a_f1 |50 a_f2) --50 (c_f1 |50 c_f2))')
+ret = respawn(hi, tmuxrc)
+all_tasks
+sorted(all_tasks.values(), None, lambda x: x.pane_index)
+ret = respawn(hi, tmuxrc)
+sorted(all_tasks.values(), None, lambda x: x.pane_index)
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../embed2.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi['layout'] = create_layout('(a |50 (b --50 c))')
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../test/test.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../test/gros.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+hi = read_hackide(open('../test/gros.hackide').xreadlines())
+ret = respawn(hi, tmuxrc)
+tmux('lsc')
+tmux('ls')
+tmux('kill-session -t hackide-self')
+dir(subprocess.CalledProcessError)
+import subprocess
+dir(subprocess.CalledProcessError)
+help(subprocess.CalledProcessError)
+tmux('kill-session -t hackide-self')
