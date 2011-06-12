@@ -1,5 +1,6 @@
 Hack-IDE
 ============
+Content-type: text/html
 Man page of hackide
 # hackide
 
@@ -142,11 +143,8 @@ Call context templates from the commandline.
 
 ## BUGS
 
-Layouts with many windows don't work well. Some theoretically
-equivalent layouts are not equivalent in practice.
 Sometimes when killing an interpreter the pane will die too. Need
 some \^D catching somewhere.  
-
 ## AUTHOR
 
 Damien "bl0b" Leroux (damien.leroux (at) gmail.com)
@@ -171,3 +169,9 @@ Damien "bl0b" Leroux (damien.leroux (at) gmail.com)
 [AUTHOR](#lbAJ)
 
 * * * * *
+
+This document was created by [man2html](/cgi-bin/man/man2html),
+using the manual pages.  
+Time: 08:14:40 GMT, June 12, 2011
+
+
