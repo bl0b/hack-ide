@@ -23,8 +23,8 @@ def about():
     print " %s templates                        to list the available task templates"%script_name
 
 def respawn(hi, tmuxrc):
-    print 'DEBUG', hi
-    print 'DEBUG', hi['layout']
+    #print 'DEBUG', hi
+    #print 'DEBUG', hi['layout']
     rc = '-f %s '%tmuxrc
     ret = []
     try:
