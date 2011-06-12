@@ -1,4 +1,4 @@
-__all__ = [ 'get_context_name', 'set_context_name', 'hackide_root', 'script_name', 'script_version' ]
+__all__ = [ 'get_context_name', 'set_context_name', 'hackide_root', 'script_name', 'script_version', 'split_cli' ]
 
 import sys
 
@@ -18,3 +18,7 @@ def get_context_name():
 
 hackide_root = '/'.join(sys.path[0].split('/')[:-1])
 
+import shlex
+
+def split_cli(l):
+    return shlex.split(l)

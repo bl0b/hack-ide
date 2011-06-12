@@ -31,7 +31,7 @@ def respawn(hi, tmuxrc):
     if session_exists:
         print "[Reattaching to existing session %s]"%hi['context']
         try:
-            ret = [ tmux('-f %s attach -t %s'%(tmuxrc, hi['context'])) ]
+            ret = [ tmux('attach -t %s'%hi['context']) ]
         except ValueError, ve:
             print "An error occurred while sending command", ve.message
             return []
@@ -68,7 +68,7 @@ def respawn(hi, tmuxrc):
 
 
 def main(args):
-    tmuxrc = rc_file('tmuxrc', open(hackide_root+'/default.tmuxrc').read()).path
+    #tmuxrc = rc_file('tmuxrc', open(hackide_root+'/default.tmuxrc').read()).path
     if len(args)==0 or "-h" in args or "--help" in args or "help" in args:
         about()
         return 0
