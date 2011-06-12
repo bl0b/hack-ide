@@ -4,6 +4,31 @@ Hack-IDE
 * * * * *
 
  
+## Index
+
+[NAME](#lbAB)
+[SYNOPSYS](#lbAC)
+[DESCRIPTION](#lbAD)
+[FILES](#lbAE)
+[work-context description](#lbAF)
+[task template](#lbAG)
+[TODO](#lbAH)
+[BUGS](#lbAI)
+[AUTHOR](#lbAJ)
+
+* * * * *
+
+Content-type: text/html
+Man page of hackide
+# hackide
+
+Section: USER COMMANDS (1)  
+Updated: June 12, 2011  
+[Index](#index) [Return to Main Contents](/cgi-bin/man/man2html)
+
+* * * * *
+
+ 
 ## NAME
 
 hackide - creates a persistent work environment in a terminal.  
@@ -44,24 +69,24 @@ template directory.
 ### work-context description
 
 This file contains three different types of lines :
-context <context-name\>
+context &lt;context-name&gt;
 
 This line defines the context name, which will become the tmux
 session name.
 
-task <name\> =\> <template\> [working-directory]
+task &lt;name&gt; =&gt; &lt;template&gt; [working-directory]
 [command-parameters]
 
-This line declares a task. **<name\>** may be followed (without
-SPACES !) by a comma-delimited list of rc file definitions in the
-form   
- "rc:<key\>:<filename\>". This will create an empty resource file by the name filename and this file can be mentioned in the command parameters by writing "%key%".
+This line declares a task. **&lt;name&gt;** may be followed
+(without SPACES !) by a comma-delimited list of rc file definitions
+in the form   
+ "rc:&lt;key&gt;:&lt;filename&gt;". This will create an empty resource file by the name filename and this file can be mentioned in the command parameters by writing "%key%".
 
-layout <layout-definition\>
+layout &lt;layout-definition&gt;
 
 A layout consists of either horizontal or vertical splits of the
 terminal window. The syntax for a split is
-**( <first\> <split-direction\> <size-of-second-pane-in-%\> <second\> )**
+**( &lt;first&gt; &lt;split-direction&gt; &lt;size-of-second-pane-in-%&gt; &lt;second&gt; )**
 where *first* and *second* are either a task name or a split.
 *split-direction* is **|** for an horizontal split or **--** for a
 vertical split.
@@ -75,9 +100,9 @@ right half.
 **Example:**
     context test
     
-    task editor => vim
-    task sandbox,rc:pyhist:sandbox.pyhistory => cmd ./py PYHISTORY=%pyhist% python -i sandbox.py
-    task shell => interactive_shell .
+    task editor =&gt; vim
+    task sandbox,rc:pyhist:sandbox.pyhistory =&gt; cmd ./py PYHISTORY=%pyhist% python -i sandbox.py
+    task shell =&gt; interactive_shell .
     
     layout ((sandbox --90 shell) |90 editor)
 
@@ -87,7 +112,7 @@ right half.
 
 Task templates contain three types of directives :
 
-RC <key\> <template\_filename\> (EMPTY|CONTENT)
+RC &lt;key&gt; &lt;template\_filename&gt; (EMPTY|CONTENT)
 
 Declares a resource file. When a task is created using this
 template, the *template\_filename* is expanded using the dictionary
@@ -96,12 +121,12 @@ of the task, that is :
             'T':task_name,
             'P':context_name,
             'PARAM':task_parameter_string,
-            <any-rc-file-already-defined>
+            &lt;any-rc-file-already-defined&gt;
     }
 
 If the last word is CONTENT, the file will be initialized from the
 template expansion of all the following lines until the line "END
-<key\> CONTENT", where <key\> is still the same.
+&lt;key&gt; CONTENT", where &lt;key&gt; is still the same.
 CMD ...
 
 Sets the command template. Whatever is on the right of the space
