@@ -190,3 +190,7 @@ grep split py/*.py
 grep \\\<split\\\> py/*.py
 grep "\<split\>(' ')" py/*.py
 rgrep app_name py/
+git commit -a
+./gen_readme.sh 
+git commit -a
+git push

@@ -250,12 +250,12 @@ def layout2tmux():
             tasks_by_window[t.window_index].append(t)
     L = sorted((t for t in tasks_by_window[app_name]), None, lambda x: x.task_index)
     cmds = [ tmux_session(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
-    print app_name, tasks_by_window[app_name], L
+    #print app_name, tasks_by_window[app_name], L
     del tasks_by_window[app_name]
     for tk in tasks_by_window:
         tw = tasks_by_window[tk]
         L = sorted((t for t in tw), None, lambda x: x.task_index)
-        print tk, tasks_by_window[tk], L
+        #print tk, tasks_by_window[tk], L
         cmds += [ tmux_window(L[0].tmux_shell_cmd(), tk) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd(), tk) for l in L[1:] ]
     return cmds
     ##print L

@@ -18,14 +18,14 @@ tmux_popen_blacklist = set(['new-session', 'new-window', 'split-window'])
 def tmux(args):
     cmd = ['tmux']+(type(args) is str and shlex.split(args) or list(args))
     if tmux_popen_blacklist.intersection(cmd):
-        print "ignoring i/o for", cmd
+        #print "ignoring i/o for", cmd
         #return (cmd, os.system(' '.join(cmd)), '')
-        return (cmd, subprocess.Popen(cmd).wait(), '', '')
+        return (cmd, subprocess.Popen(cmd).wait(), None, None)
     try:
-        print cmd, '=>',
+        #print cmd, '=>',
         p = subprocess.Popen(cmd, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
         out, err = p.communicate()
-        print repr(out)
+        #print repr(out)
         return (cmd, p.returncode, out, err)
     except subprocess.CalledProcessError, cpe:
         ret = (cmd, cpe.returncode, cpe.output, 'n/a')

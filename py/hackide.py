@@ -65,7 +65,7 @@ def read_hackide(lines):
     for l in (l.strip() for l in lines):
         if len(l)==0 or l.startswith("#"):
             continue
-        print "[hack-ide] reading line", l
+        #print "[hack-ide] reading line", l
         if l=='DOC':
             output = lambda x: ret['doc'].append(x)
             continue

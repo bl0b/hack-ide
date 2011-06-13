@@ -87,7 +87,7 @@ class task(template):
         return self['T']+'(#%i p=%s o=%s)'%(self.task_index, str(self.parent and self.parent.task_index), str(self.opts))
     def tmux_shell_cmd(self):
         global task_cmd_dummy
-        print "task_cmd_dummy =", task_cmd_dummy
+        #print "task_cmd_dummy =", task_cmd_dummy
         if task_cmd_dummy:
             return "printf '\033]2;%s\033\\' ; echo 'Task: %s\nindex: %i\nparent: %s\nwd: %s\ncmd: %s';cat ->/dev/null"%(
                 self['T'],
