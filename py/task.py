@@ -1,14 +1,22 @@
-import os, sys
+import os, sys, shlex
 
 from base import *
 from tmux import *
 from rc_file import *
 
-__all__ = [ 'all_tasks', 'all_embedded', 'get_task_prefix', 'push_task_prefix', 'pop_task_prefix', 'create_task', 'create_task_class', 'task_registry', 'rc_file', 'user_dir_tasks', 'site_dir_tasks' ]
+__all__ = [ 'all_tasks', 'all_embedded', 'get_task_prefix', 'push_task_prefix', 'pop_task_prefix', 'create_task', 'create_task_class', 'task_registry', 'rc_file', 'user_dir_tasks', 'site_dir_tasks', 'set_task_cmd_dummy' ]
 
 task_prefix = ""
 
 get_task_prefix = lambda: task_prefix
+
+task_cmd_dummy = False
+
+def set_task_cmd_dummy(x):
+    global task_cmd_dummy
+    task_cmd_dummy = bool(x)
+    if task_cmd_dummy:
+        print "Tasks will not be run."
 
 def push_task_prefix(v):
     global task_prefix
@@ -69,6 +77,7 @@ class task(template):
         self['RC'] = ide_data_path
         self.task_index = len(all_tasks)
         self.pane_index = -1
+        self.window_index = -1
         self.opts = "UNSET"
         self.parent = None
         self.split_opts = ""
@@ -77,8 +86,18 @@ class task(template):
     def __repr__(self):
         return self['T']+'(#%i p=%s o=%s)'%(self.task_index, str(self.parent and self.parent.task_index), str(self.opts))
     def tmux_shell_cmd(self):
-        #return "printf '\033]2;%s\033\\' ; echo 'pane:%i\ntask:%i\nparent:%s\n'; cd %s ; while true; do %s; done"%(self['T'], self.pane_index, self.task_index, str(self.parent and self.parent.task_index), self.cmd_wd, self.parse(self.cmd_template))
-        return "printf '\033]2;%s\033\\' ; cd %s ; while true; do %s; done"%(self['T'], self.cmd_wd, self.parse(self.cmd_template))
+        global task_cmd_dummy
+        print "task_cmd_dummy =", task_cmd_dummy
+        if task_cmd_dummy:
+            return "printf '\033]2;%s\033\\' ; echo 'Task: %s\nindex: %i\nparent: %s\nwd: %s\ncmd: %s';cat ->/dev/null"%(
+                self['T'],
+                self['T'],
+                self.task_index,
+                str(self.parent and self.parent.task_index),
+                self.cmd_wd,
+                self.parse(self.cmd_template))
+        else:
+            return "printf '\033]2;%s\033\\' ; cd %s ; while true; do %s; done"%(self['T'], self.cmd_wd, self.parse(self.cmd_template))
     def tmux_cmd(self):
         if self.parent is None:
             return tmux_window(self.tmux_shell_cmd())
@@ -93,7 +112,8 @@ def create_task(t):
     i = rmember.find(" ")
     tasktype = i!=-1 and rmember[:i] or rmember
     param = i!=-1 and rmember[i+1:] or ""
-    return task_registry[tasktype+'_task'](get_context_name(), name, param)
+    task_registry[tasktype+'_task'](get_context_name(), name, param)
+    return all_tasks
 
 def create_task_class(descfilename):
     #print "creating task template from", descfilename
@@ -116,7 +136,7 @@ def create_task_class(descfilename):
         if l.startswith("RC "):
             #print l
             #print l[3:]
-            key, filenametemplate, cts = l[3:].split(' ')
+            key, filenametemplate, cts = shlex.split(l[3:])
             rc_files[key] = ( filenametemplate, [] )
             if cts=='CONTENTS':
                 output = lambda v: rc_files[key][1].append(l)

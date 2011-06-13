@@ -179,3 +179,14 @@ git commit -a
 git push
 hackide list hackide.hackide 
 hackide files hackide.hackide 
+./py/main.py toto files hackide.hackide 
+./py/main.py toto files hackide.hackide |xargs git add
+git commit -a
+git commit py/main.py
+git commit -a
+git push
+man bash
+grep split py/*.py
+grep \\\<split\\\> py/*.py
+grep "\<split\>(' ')" py/*.py
+rgrep app_name py/

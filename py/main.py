@@ -46,8 +46,8 @@ def respawn(hi, tmuxrc):
         all_cmds = [ 'start-server' ]
         all_cmds += defensive_layout
         all_cmds += open(tmuxrc).xreadlines()
-        all_cmds += [ 'attach -t %s'%(get_context_name()) ]
-       
+        all_cmds += hi['tmux']
+        all_cmds += [ 'select-window -t %s:%s'%(get_context_name(), app_name), 'select-pane -t %s:%s.0'%(get_context_name(), app_name), 'attach -t %s'%(get_context_name()) ]
 
         ret = []
         try:
@@ -93,6 +93,11 @@ def main(args):
                     print "   ", l
 
                 print
+    elif args[0] == 'test-layout':
+        set_task_cmd_dummy(True)
+        return main(args[1:])
+    elif args[0] in all_context_templates:
+        respawn(embed_hackide(args), tmuxrc)
 
     if len(args)==2:
         if args[0]=='files':

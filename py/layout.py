@@ -1,10 +1,10 @@
-import os, sys
+import os, sys, shlex
 
 from base import *
 from task import *
 from tmux import *
 
-__all__ = [ 'create_layout', 'layout2tmux', 'all_context_templates', 'site_dir_contexts', 'user_dir_contexts' ]
+__all__ = [ 'create_layout', 'create_window', 'layout2tmux', 'all_context_templates', 'site_dir_contexts', 'user_dir_contexts', 'all_windows' ]
 #DEBUG ONLY
 __all__ += [ 'layout', 'reg_order' ]
 
@@ -155,7 +155,7 @@ class splitter(object):
 class subcontext(splitter):
     def __init__(self, l):
         #print l, l.opts
-        mode, t, sz = l.opts.split(' ')
+        mode, t, sz = shlex.split(l.opts)
         splitter.__init__(self, mode, ' '.join((t, sz)), l.a, l.b)
 
 layout = None
@@ -168,14 +168,15 @@ def pane2cmd(x, p, opts):
 
 
 
-def reg_order(l):
+def reg_order(l, window_index):
     def reg_if_new(x, v, p, opts):
-        if x.task.task_index!=-1:
+        if x.task.window_index!=-1:
             return
         x.index = v()
         x.task.task_index = x.index
         x.task.opts = opts
         x.task.parent = p
+        x.task.window_index = window_index
     def rec_reg(l):
         if type(l) in (splitter, subcontext):
             fp = l.first_pane()
@@ -200,16 +201,16 @@ def reg_order(l):
         for i in xrange(len(L)):
             L[i].pane_index = i
         return L
-    for x in all_tasks.values():
-        x.task_index = -1
-        x.pane_index = -1
+    #for x in all_tasks.values():
+    #    x.task_index = -1
+    #    x.pane_index = -1
     splitter.top_index=-1
     #print pane_order(l)
     rec_reg(l)
 
 
-def create_layout(l):
-    global layout
+def create_layout(l, name=app_name):
+    #global layout
     tokens = []
     splitter.top_index=0
     try:
@@ -227,14 +228,39 @@ def create_layout(l):
         layout = parse_layout(tokiter)
     elif t is T_SYM:
         layout = make_pane(v)
-    reg_order(layout)
+    reg_order(layout, name)
     return layout
 
+all_windows = {}
+
+def create_window(l):
+    i = l.find(' ')
+    bad = l.find('(')
+    if i==-1 or (-1 < bad < i):
+        raise ValueError("line must contain one word before layout data : "+l)
+    wname, l = l[:i], l[i+1:]
+    all_windows[get_task_prefix()+wname] = create_layout(l, wname)
+    return all_windows
+
+
 def layout2tmux():
-    L = sorted((t for t in all_tasks.values() if t.task_index!=-1), None, lambda x: x.task_index)
-    #print L
-    #return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.pane_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
-    return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
+    tasks_by_window = dict([ (app_name, list()) ] + [ (k, list()) for k in all_windows ])
+    for t in all_tasks.values():
+        if t.task_index!=-1:
+            tasks_by_window[t.window_index].append(t)
+    L = sorted((t for t in tasks_by_window[app_name]), None, lambda x: x.task_index)
+    cmds = [ tmux_session(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
+    print app_name, tasks_by_window[app_name], L
+    del tasks_by_window[app_name]
+    for tk in tasks_by_window:
+        tw = tasks_by_window[tk]
+        L = sorted((t for t in tw), None, lambda x: x.task_index)
+        print tk, tasks_by_window[tk], L
+        cmds += [ tmux_window(L[0].tmux_shell_cmd(), tk) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd(), tk) for l in L[1:] ]
+    return cmds
+    ##print L
+    ##return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.pane_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
+    #return [ tmux_window(L[0].tmux_shell_cmd()) ] + [ tmux_split(l.parent.task_index, l.opts, l.tmux_shell_cmd()) for l in L[1:] ]
 
 
 

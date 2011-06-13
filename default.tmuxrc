@@ -1,1 +1,2 @@
 bind-key -n C-q kill-session
+set-option -g set-remain-on-exit on
