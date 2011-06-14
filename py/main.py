@@ -17,6 +17,7 @@ def about():
     version()
     print "invoke as follows:"
     print " %s ide-descr.hackide                to open this IDE"%script_name
+    print " %s test-layout ide-descr.hackide    to check the layout for this IDE"%script_name
     print " %s files ide-descr.hackide          to list the resource files used by this IDE"%script_name
     print " %s templates                        to list the available task templates"%script_name
 
