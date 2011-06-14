@@ -1,0 +1,8 @@
+context $1
+
+task $1-editor => vim
+task $1-sandbox,rc:pyhist:$1-sandbox.pyhistory => cmd ./py PYHISTORY=%pyhist% python -i sandbox.py
+task $1-shell => interactive_shell .
+
+layout ((sandbox --30 shell) |30 editor)
+
